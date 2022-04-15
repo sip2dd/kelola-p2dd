@@ -1,0 +1,112 @@
+<style>
+  table#pilihan > tbody > tr > td {
+      padding-right: 50px;
+  }
+</style>
+<form name="kanalpembayaranForm" tri-wizard-form novalidate>
+    <p>1. Berikut alat/kanal pembayaran yang telah tersedia bagi masyarakat untuk pembayaran pajak dan retribusi<span style="color: red;">*</span></p>
+    <p class="radio-label">Teller/Loket Bank</p>
+      <md-radio-group class="md-primary" ng-model="vm.data.teller_loket_bank">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.teller_loket_bank = null" value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.teller_loket_bank = null" value="tidak">Tidak</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+    <p class="radio-label">Agen Bank/Point-of-sales</p>
+      <md-radio-group class="md-primary" ng-model="vm.data.agen_bank">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.agen_bank = null" value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.agen_bank = null" value="tidak">Tidak</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+    <p class="radio-label">ATM</p>
+      <md-radio-group class="md-primary" ng-model="vm.data.atm">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.atm = null" value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.atm = null" value="tidak">Tidak</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+    <p class="radio-label">EDC</p>
+      <md-radio-group class="md-primary" ng-model="vm.data.edc">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.edc = null" value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.edc = null" value="tidak">Tidak</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+    <p class="radio-label">UE Reader</p>
+      <md-radio-group class="md-primary" ng-model="vm.data.uereader">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.uereader = null" value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.uereader = null" value="tidak">Tidak</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+    <p class="radio-label">Internet/Mobile/SMS Banking</p>
+      <md-radio-group class="md-primary" ng-model="vm.data.internet_mobile_sms_banking">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.internet_mobile_sms_banking = null" value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.internet_mobile_sms_banking = null" value="tidak">Tidak</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+    <p class="radio-label">QRIS</p>
+      <md-radio-group class="md-primary" ng-model="vm.data.qris">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.qris = null" value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.qris = null" value="tidak">Tidak</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+    <p class="radio-label">E-Commerce/ Marketplace/Toko Online</p>
+      <md-radio-group class="md-primary" ng-model="vm.data.ecommerce">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.ecommerce = null" value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button ng-dblclick = "vm.data.ecommerce = null" value="tidak">Tidak</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+</form>

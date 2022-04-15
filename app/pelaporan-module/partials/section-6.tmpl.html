@@ -1,0 +1,29 @@
+<form name="kendalarencanamasukanForm" tri-wizard-form novalidate>
+    <p>1. Berikan ceklis pada kendala dan/atau permasalahan dalam pelaksanaan ETPD di daerah Saudara<span style="color: red;">*</span></p>
+    <md-input-container ng-repeat="item in vm.kendala_pelaksanaan" class="md-block" style="margin: 0px;" flex>
+        <md-checkbox style="margin-bottom: 0px;" class="md-primary" name="vm.data.kendala_pelaksanaan_etpd[]" value="{{item}}" ng-checked="vm.data.kendala_pelaksanaan_etpd.indexOf(item) > -1" ng-click="vm.toggleSelection('kendala_pelaksanaan_etpd', item)" aria-label="{{item}}">
+            {{item}}
+        </md-checkbox>
+      </md-input-container>
+    
+    <md-input-container style="margin: 0px;" ng-if="vm.data.kendala_pelaksanaan_etpd.includes('Other')">
+        <input type="text" ng-model="vm.data.kendala_pelaksanaan_etpd_other"/>
+    </md-input-container>
+
+
+    <p>2. Apakah wilayah Saudara telah membentuk TP2DD<span style="color: red;">*</span></p>
+      <md-radio-group class="md-primary" ng-model="vm.data.telah_membentuk_tp2dd">
+          <md-radio-button ng-dblclick = "vm.data.telah_membentuk_tp2dd = null" value="ya">Ya</md-radio-button>
+          <md-radio-button ng-dblclick = "vm.data.telah_membentuk_tp2dd = null" value="tidak">Tidak</md-radio-button>
+      </md-radio-group>
+      <md-input-container class="md-block">
+        <label>3. Jika Ya, sebutkan landasan hukum pembentukan TP2DD</label>
+        <input type="text" ng-model="vm.data.landasan_hukum_pembentukan_tp2dd" />
+      </md-input-container>
+      <p>4. Apakah dalam pengisian ini Saudara dibantu oleh Bank RKUD dan KPw Bank Indonesia setempat?<span style="color: red;">*</span></p>
+        <md-radio-group class="md-primary" ng-model="vm.data.dibantu_oleh_bank">
+            <md-radio-button ng-dblclick = "vm.data.dibantu_oleh_bank = null" value="ya">Ya</md-radio-button>
+            <md-radio-button ng-dblclick = "vm.data.dibantu_oleh_bank = null" value="tidak">Tidak</md-radio-button>
+        </md-radio-group>
+    
+</form>

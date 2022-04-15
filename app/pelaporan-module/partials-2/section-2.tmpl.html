@@ -1,0 +1,464 @@
+<form name="transaksipendapatanpemdaForm" novalidate>
+    
+  <div ng-show="vm.isProv() || !vm.data.instansi_id">
+      <!-- If provinsi -->
+      <!-- Kendaraan Bermotor -->
+      <p>1. Berikut kanal pembayaran yang telah digunakan untuk pajak provinsi</p>
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check"></p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          {{answer}}
+        </md-input-container>
+      </div>
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Kendaraan Bermotor</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.kendaraan_bermotor[]" value="{{answer}}" ng-checked="vm.data.kendaraan_bermotor.indexOf(answer) > -1" ng-click="vm.toggleSelection('kendaraan', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Bea Balik Nama Kendaraan Bermotor -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Bea Balik Nama Kendaraan Bermotor</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.bea_balik_nama_kendaraan_bermotor[]" value="{{answer}}" ng-checked="vm.data.bea_balik_nama_kendaraan_bermotor.indexOf(answer) > -1" ng-click="vm.toggleSelection('bea_balik_nama_kendaraan_bermotor', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Bahan Bakar Kendaraan Bermotor -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Bahan Bakar Kendaraan Bermotor</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.bahan_bakar_kendaraan_bermotor[]" value="{{answer}}" ng-checked="vm.data.bahan_bakar_kendaraan_bermotor.indexOf(answer) > -1" ng-click="vm.toggleSelection('bahan_bakar_kendaraan_bermotor', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Air Permukaan -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Air Permukaan</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.air_permukaan[]" value="{{answer}}" ng-checked="vm.data.air_permukaan.indexOf(answer) > -1" ng-click="vm.toggleSelection('air_permukaan', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Rokok -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Rokok</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.rokok[]" value="{{answer}}" ng-checked="vm.data.rokok.indexOf(answer) > -1" ng-click="vm.toggleSelection('rokok', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  </div>
+
+  <div ng-show="!vm.isProv() || !vm.data.instansi_id">
+      <!-- If Kabupaten/Kota -->
+      <!-- Hotel -->
+      <p>1. Berikut kanal pembayaran yang telah digunakan untuk pajak kota/kabupaten</p>
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check"></p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          {{answer}}
+        </md-input-container>
+      </div>
+
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Hotel</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.hotel[]" value="{{answer}}" ng-checked="vm.data.hotel.indexOf(answer) > -1" ng-click="vm.toggleSelection('hotel', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Restoran -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Restoran</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.restoran[]" value="{{answer}}" ng-checked="vm.data.restoran.indexOf(answer) > -1" ng-click="vm.toggleSelection('restoran', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Hiburan -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Hiburan</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.hiburan[]" value="{{answer}}" ng-checked="vm.data.hiburan.indexOf(answer) > -1" ng-click="vm.toggleSelection('hiburan', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Reklame -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Reklame</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.reklame[]" value="{{answer}}" ng-checked="vm.data.reklame.indexOf(answer) > -1" ng-click="vm.toggleSelection('reklame', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Penerangan Jalan -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Penerangan Jalan</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.penerangan_jalan[]" value="{{answer}}" ng-checked="vm.data.penerangan_jalan.indexOf(answer) > -1" ng-click="vm.toggleSelection('penerangan_jalan', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Mineral Bukan Logam dan Batuan -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Mineral Bukan Logam dan Batuan</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.mineral_bukan_logam[]" value="{{answer}}" ng-checked="vm.data.mineral_bukan_logam.indexOf(answer) > -1" ng-click="vm.toggleSelection('mineral_bukan_logam', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Parkir -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Parkir</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.parkir[]" value="{{answer}}" ng-checked="vm.data.parkir.indexOf(answer) > -1" ng-click="vm.toggleSelection('parkir', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Air Tanah -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Air Tanah</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.air_tanah[]" value="{{answer}}" ng-checked="vm.data.air_tanah.indexOf(answer) > -1" ng-click="vm.toggleSelection('air_tanah', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Sarang Burung Walet -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Sarang Burung Walet</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.sarang_burung_walet[]" value="{{answer}}" ng-checked="vm.data.sarang_burung_walet.indexOf(answer) > -1" ng-click="vm.toggleSelection('sarang_burung_walet', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Pajak Bumi dan Bangunan Perdesaan dan Perkotaan -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Pajak Bumi dan Bangunan Perdesaan dan Perkotaan</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.pbb_desa_kota[]" value="{{answer}}" ng-checked="vm.data.pbb_desa_kota.indexOf(answer) > -1" ng-click="vm.toggleSelection('pbb_desa_kota', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+  
+      <!-- Bea Perolehan Hak atas Tanah dan Bangunan -->
+      <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check">Bea Perolehan Hak atas Tanah dan Bangunan</p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+          <md-checkbox disabled class="md-primary" name="vm.data.bea_hak_tanah_bangunan[]" value="{{answer}}" ng-checked="vm.data.bea_hak_tanah_bangunan.indexOf(answer) > -1" ng-click="vm.toggleSelection('bea_hak_tanah_bangunan', answer)" aria-label="{{answer}}">
+              <!-- {{answer}} -->
+          </md-checkbox>
+        </md-input-container>
+      </div>
+
+  </div>
+
+  <br>
+  
+  <p>2. Kanal pembayaran yang telah digunakan untuk retribusi</p>
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+        <div flex="30" flex-xs="100"><p class="label-check"></p></div>
+        <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" style="text-align: center;" flex>
+          {{answer}}
+        </md-input-container>
+      </div>
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pelayanan Kesehatan</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pelayanan_kesehatan[]" value="{{answer}}" ng-checked="vm.data.pelayanan_kesehatan.indexOf(answer) > -1" ng-click="vm.toggleSelection('pelayanan_kesehatan', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+  
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pelayanan Persampahan / Kebersihan</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pelayanan_kebersihan[]" value="{{answer}}" ng-checked="vm.data.pelayanan_kebersihan.indexOf(answer) > -1" ng-click="vm.toggleSelection('pelayanan_kebersihan', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pelayanan Pemakaman</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pelayanan_pemakaman[]" value="{{answer}}" ng-checked="vm.data.pelayanan_pemakaman.indexOf(answer) > -1" ng-click="vm.toggleSelection('pelayanan_pemakaman', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Parkir di Tepi Jalan Umum</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.parkir_jalan_umum[]" value="{{answer}}" ng-checked="vm.data.parkir_jalan_umum.indexOf(answer) > -1" ng-click="vm.toggleSelection('parkir_jalan_umum', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pelayanan Pasar</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pelayanan_pasar[]" value="{{answer}}" ng-checked="vm.data.pelayanan_pasar.indexOf(answer) > -1" ng-click="vm.toggleSelection('pelayanan_pasar', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pengujian Kendaraan Bermotor</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pengujian_kendaraan_bermotor[]" value="{{answer}}" ng-checked="vm.data.pengujian_kendaraan_bermotor.indexOf(answer) > -1" ng-click="vm.toggleSelection('pengujian_kendaraan_bermotor', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pemeriksaan Alat Pemadam Kebakaran</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pemeriksaan_alat_pemadam[]" value="{{answer}}" ng-checked="vm.data.pemeriksaan_alat_pemadam.indexOf(answer) > -1" ng-click="vm.toggleSelection('pemeriksaan_alat_pemadam', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Penggantian Biaya Cetak Peta Penyediaan</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.penggantian_biaya_cetak_peta[]" value="{{answer}}" ng-checked="vm.data.penggantian_biaya_cetak_peta.indexOf(answer) > -1" ng-click="vm.toggleSelection('biaya_cetak_peta', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Penyedotan Kakus</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.penyedotan_kakus[]" value="{{answer}}" ng-checked="vm.data.penyedotan_kakus.indexOf(answer) > -1" ng-click="vm.toggleSelection('penyedotan_kakus', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pengolahan Limbah Cair</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pengolahan_limbah_cair[]" value="{{answer}}" ng-checked="vm.data.pengolahan_limbah_cair.indexOf(answer) > -1" ng-click="vm.toggleSelection('pengolahan_limbah_cair', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pelayanan Tera / Tera Ulang</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pelayanan_tera[]" value="{{answer}}" ng-checked="vm.data.pelayanan_tera.indexOf(answer) > -1" ng-click="vm.toggleSelection('pelayanan_tera', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pelayanan Pendidikan</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pelayanan_pendidikan[]" value="{{answer}}" ng-checked="vm.data.pelayanan_pendidikan.indexOf(answer) > -1" ng-click="vm.toggleSelection('pelayanan_pendidikan', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pengendalian Menara Telekomunikasi</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pengendalian_menara_telekomunikasi[]" value="{{answer}}" ng-checked="vm.data.pengendalian_menara_telekomunikasi.indexOf(answer) > -1" ng-click="vm.toggleSelection('pengendalian_menara_telekomunikasi', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pengendalian Lalu-lintas</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pengendalian_lalu_lintas[]" value="{{answer}}" ng-checked="vm.data.pengendalian_lalu_lintas.indexOf(answer) > -1" ng-click="vm.toggleSelection('pengendalian_lalu_lintas', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pemakaian Kekayaan Daerah</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pemakaian_kekayaan_daerah[]" value="{{answer}}" ng-checked="vm.data.pemakaian_kekayaan_daerah.indexOf(answer) > -1" ng-click="vm.toggleSelection('pemakaian_kekayaan_daerah', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pasar Grosir dan / atau Pertokoan</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pasar_grosir[]" value="{{answer}}" ng-checked="vm.data.pasar_grosir.indexOf(answer) > -1" ng-click="vm.toggleSelection('pasar_grosir', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Tempat Pelelangan</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.tempat_pelelangan[]" value="{{answer}}" ng-checked="vm.data.tempat_pelelangan.indexOf(answer) > -1" ng-click="vm.toggleSelection('tempat_pelelangan', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Terminal</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.terminal[]" value="{{answer}}" ng-checked="vm.data.terminal.indexOf(answer) > -1" ng-click="vm.toggleSelection('terminal', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Tempat Khusus Parkir</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.tempat_khusus_parkir[]" value="{{answer}}" ng-checked="vm.data.tempat_khusus_parkir.indexOf(answer) > -1" ng-click="vm.toggleSelection('tempat_khusus_parkir', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Tempat Penginapan/Pesanggrahan/Villa</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.tempat_penginapan[]" value="{{answer}}" ng-checked="vm.data.tempat_penginapan.indexOf(answer) > -1" ng-click="vm.toggleSelection('tempat_penginapan', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Rumah Potong Hewan</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.rumah_potong_hewan[]" value="{{answer}}" ng-checked="vm.data.rumah_potong_hewan.indexOf(answer) > -1" ng-click="vm.toggleSelection('rumah_potong_hewan', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Pelayanan Pelabuhan</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.pelayanan_pelabuhan[]" value="{{answer}}" ng-checked="vm.data.pelayanan_pelabuhan.indexOf(answer) > -1" ng-click="vm.toggleSelection('pelayanan_pelabuhan', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Tempat Rekreasi dan Olahraga</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.tempat_rekreasi[]" value="{{answer}}" ng-checked="vm.data.tempat_rekreasi.indexOf(answer) > -1" ng-click="vm.toggleSelection('tempat_rekreasi', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Penyeberangan di Air</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.penyebrangan_diair[]" value="{{answer}}" ng-checked="vm.data.penyebrangan_diair.indexOf(answer) > -1" ng-click="vm.toggleSelection('penyebrangan_diair', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Rekreasi Penjualan Produksi Usaha Daerah</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.penjualan_produksi_usaha[]" value="{{answer}}" ng-checked="vm.data.penjualan_produksi_usaha.indexOf(answer) > -1" ng-click="vm.toggleSelection('penjualan_produksi_usaha', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Izin Persetujuan Bangunan Gedung</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.izin_persetujuan_bangunan[]" value="{{answer}}" ng-checked="vm.data.izin_persetujuan_bangunan.indexOf(answer) > -1" ng-click="vm.toggleSelection('izin_persetujuan_bangunan', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Izin Tempat Penjualan Minuman Beralkohol</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.izin_tempat_penjualan_minuman[]" value="{{answer}}" ng-checked="vm.data.izin_tempat_penjualan_minuman.indexOf(answer) > -1" ng-click="vm.toggleSelection('izin_tempat_penjualan_minuman', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Izin Trayek</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.izin_trayek[]" value="{{answer}}" ng-checked="vm.data.izin_trayek.indexOf(answer) > -1" ng-click="vm.toggleSelection('izin_trayek', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+  
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Izin Usaha Perikanan</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.izin_usaha_perikanan[]" value="{{answer}}" ng-checked="vm.data.izin_usaha_perikanan.indexOf(answer) > -1" ng-click="vm.toggleSelection('izin_usaha_perikanan', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+  <div layout layout-xs="column" flex layout-align="space-between center" layout-align-xs="start start">
+      <div flex="30" flex-xs="100"><p class="label-check">Perpanjangan IMTA</p></div>
+      <md-input-container ng-repeat="answer in vm.answers" class="md-block" style="text-align: center;" flex>
+        <md-checkbox disabled class="md-primary" name="vm.data.perpanjangan_imta[]" value="{{answer}}" ng-checked="vm.data.perpanjangan_imta.indexOf(answer) > -1" ng-click="vm.toggleSelection('perpanjangan_imta', answer)" aria-label="{{answer}}">
+            <!-- {{answer}} -->
+        </md-checkbox>
+      </md-input-container>
+  </div>
+
+</form>

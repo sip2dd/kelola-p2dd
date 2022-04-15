@@ -1,0 +1,45 @@
+<?php
+require_once __DIR__ . '/vendor/autoload.php';
+/**
+ * This example shows how to make use of PHPMailer's exceptions for error handling.
+ */
+
+//Import PHPMailer classes into the global namespace
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+//Create a new PHPMailer instance
+//Passing true to the constructor enables the use of exceptions for error handling
+$mail = new PHPMailer(true);
+try {
+    //Set who the message is to be sent from
+    // $mail->setFrom('postmaster@p2dd.go.id', 'P2DD');
+    //Set an alternative reply-to address
+    // $mail->addReplyTo('replyto@example.com', 'First Last');
+    //Set who the message is to be sent to
+    // $mail->addAddress('mtaupiq@gmail.com', 'Muhammad Taupiq');
+    //Set the subject line
+    // $mail->Subject = 'PHPMailer Exceptions test';
+    //Read an HTML message body from an external file, convert referenced images to embedded,
+    //and convert the HTML into a basic plain-text alternative body
+    // $mail->msgHTML(file_get_contents('contents.html'), __DIR__);
+    //Replace the plain text body with one created manually
+    // $mail->AltBody = 'This is a plain-text message body';
+    //Attach an image file
+    // $mail->addAttachment('images/phpmailer_mini.png');
+    //send the message
+    //Note that we don't need check the response from this because it will throw an exception if it has trouble
+    $mail->setFrom('postmaster@p2dd.go.id', 'P2DD');
+    $mail->addAddress('mtaupiq@gmail.com', 'Muhammad Taupiq');
+
+    $mail->isHTML(true);
+
+    $mail->Subject = "PHPMailer Exceptions test";
+    $mail->Body = "This is a plain-text message body";
+    $mail->send();
+    echo 'Message sent!';
+} catch (Exception $e) {
+    echo $e->errorMessage(); //Pretty error messages from PHPMailer
+} catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
+    echo $e->getMessage(); //Boring error messages from anything else!
+}

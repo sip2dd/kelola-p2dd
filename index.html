@@ -1,0 +1,680 @@
+<!doctype html>
+<html class="no-js" ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <!--<meta name="viewport" content="initial-scale=1, maximum-scale=1" />-->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=RobotoDraft:100,100italic,300,300italic,400,500,700,900,400italic">-->
+    <link rel="stylesheet" href="assets/css/g-fonts.css">
+
+    <!-- Place favicon.png in the root directory -->
+    <!--<link rel="shortcut icon" href="favicon.png" type="image/png" />-->
+
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/angular-dragula/dist/dragula.min.css" />
+    <link rel="stylesheet" href="../bower_components/angular-material-data-table/dist/md-data-table.min.css" />
+    <link rel="stylesheet" href="../bower_components/fullcalendar/dist/fullcalendar.css" />
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" />
+    <link rel="stylesheet" href="../bower_components/textAngular/src/textAngular.css" />
+    <link rel="stylesheet" href="../bower_components/weather-icons/css/weather-icons.css" />
+    <link rel="stylesheet" href="../bower_components/angular-ivh-treeview/dist/ivh-treeview.css" />
+    <link rel="stylesheet" href="../bower_components/extended-datetimepicker/css/material-datetimepicker.css" />
+    <link rel="stylesheet" href="../bower_components/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="../bower_components/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="../bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="../bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="app/app.css">
+    <!-- endinject -->
+    <link rel="stylesheet" href="../bower_components/highlightjs/styles/xcode.css">
+    <!-- endbuild -->
+</head>
+
+<body translate-cloak ng-class="bodyClasses">
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="full-height" ui-view></div>
+
+    <!-- Ajax Loader -->
+    <div id="loaderDiv" loader>
+        <md-progress-circular class="md-hue-2 ajax-loader" md-mode="indeterminate"></md-progress-circular>
+    </div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <!--<script>-->
+    <!--(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=-->
+    <!--function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;-->
+    <!--e=o.createElement(i);r=o.getElementsByTagName(i)[0];-->
+    <!--e.src='//www.google-analytics.com/analytics.js';-->
+    <!--r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));-->
+    <!--ga('create','UA-XXXXX-X');ga('send','pageview');-->
+    <!--</script>-->
+
+    <!-- build:js(src) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/chart.js/dist/Chart.js"></script>
+    <script src="../bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="../bower_components/angular-digest-hud/digest-hud.js"></script>
+    <script src="../bower_components/angular-dragula/dist/angular-dragula.js"></script>
+    <script src="../bower_components/angular-google-chart/ng-google-chart.js"></script>
+    <script src="../bower_components/lodash/lodash.js"></script>
+    <script src="../bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="../bower_components/highlightjs/highlight.pack.js"></script>
+    <script src="../bower_components/angular-highlightjs/build/angular-highlightjs.js"></script>
+    <script src="../bower_components/angular-linkify/angular-linkify.js"></script>
+    <script src="../bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="../bower_components/angular-aria/angular-aria.js"></script>
+    <script src="../bower_components/angular-messages/angular-messages.js"></script>
+    <script src="../bower_components/angular-material/angular-material.js"></script>
+    <script src="../bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="../bower_components/angular-moment/angular-moment.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../bower_components/angular-translate/angular-translate.js"></script>
+    <script src="../bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+    <script src="../bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="../bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+    <script src="../bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <script src="../bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../bower_components/countUp.js/countUp.js"></script>
+    <script src="../bower_components/rangy/rangy-core.js"></script>
+    <script src="../bower_components/rangy/rangy-classapplier.js"></script>
+    <script src="../bower_components/rangy/rangy-highlighter.js"></script>
+    <script src="../bower_components/rangy/rangy-selectionsaverestore.js"></script>
+    <script src="../bower_components/rangy/rangy-serializer.js"></script>
+    <script src="../bower_components/rangy/rangy-textrange.js"></script>
+    <script src="../bower_components/textAngular/src/textAngular.js"></script>
+    <script src="../bower_components/textAngular/src/textAngular-sanitize.js"></script>
+    <script src="../bower_components/textAngular/src/textAngularSetup.js"></script>
+    <script src="../bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
+    <script src="../bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="../bower_components/satellizer/satellizer.js"></script>
+    <script src="../bower_components/angular-ivh-treeview/dist/ivh-treeview.js"></script>
+    <script src="../bower_components/momentjs/moment.js"></script>
+    <script src="../bower_components/extended-datetimepicker/js/angular-material-datetimepicker.js"></script>
+    <script src="../bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+    <script src="../bower_components/leaflet/dist/leaflet-src.js"></script>
+    <script src="../bower_components/ui-leaflet/dist/ui-leaflet.js"></script>
+    <script src="../bower_components/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
+    <script src="../bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
+    <!-- endbower -->
+
+    <!-- enqueue all translations for calendar (remove if you dont need multilanguage) -->
+    <script src="../bower_components/fullcalendar/dist/lang-all.js"></script>
+    <!-- endbuild -->
+    
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
+    <script src="app/triangular/layouts/layouts.module.js"></script>
+    <script src="app/triangular/layouts/default/default-layout.controller.js"></script>
+    <script src="app/triangular/layouts/default/default-content.directive.js"></script>
+    <script src="app/triangular/components/components.module.js"></script>
+    <script src="app/triangular/components/wizard/wizard.directive.js"></script>
+    <script src="app/triangular/components/wizard/wizard-form.directive.js"></script>
+    <script src="app/triangular/components/widget/widget.directive.js"></script>
+    <script src="app/triangular/components/toolbars/toolbar.controller.js"></script>
+    <script src="app/triangular/components/table/table.directive.js"></script>
+    <script src="app/triangular/components/table/table-start-from.filter.js"></script>
+    <script src="app/triangular/components/table/table-cell-image.filter.js"></script>
+    <script src="app/triangular/components/notifications-panel/notifications-panel.controller.js"></script>
+    <script src="app/triangular/components/menu/menu.provider.js"></script>
+    <script src="app/triangular/components/menu/menu.directive.js"></script>
+    <script src="app/triangular/components/menu/menu.controller.js"></script>
+    <script src="app/triangular/components/menu/menu-item.directive.js"></script>
+    <script src="app/triangular/components/loader/loader.directive.js"></script>
+    <script src="app/triangular/components/loader/loader-service.js"></script>
+    <script src="app/triangular/components/footer/footer.controller.js"></script>
+    <script src="app/triangular/components/breadcrumbs/breadcrumbs.service.js"></script>
+    <script src="app/examples/menu/menu.module.js"></script>
+    <script src="app/examples/menu/examples/dynamic-menu.controller.js"></script>
+    <script src="app/examples/maps/maps.module.js"></script>
+    <script src="app/examples/maps/examples/map-terrain-demo.controller.js"></script>
+    <script src="app/examples/maps/examples/map-label-demo.controller.js"></script>
+    <script src="app/examples/forms/forms.module.js"></script>
+    <script src="app/examples/forms/examples/binding-1.controller.js"></script>
+    <script src="app/examples/forms/examples/autocomplete-1.controller.js"></script>
+    <script src="app/examples/elements/elements.module.js"></script>
+    <script src="app/examples/elements/examples/upload-animate.controller.js"></script>
+    <script src="app/examples/elements/examples/upload-1.controller.js"></script>
+    <script src="app/examples/elements/examples/toast-1.controller.js"></script>
+    <script src="app/examples/elements/examples/table-advanced.controller.js"></script>
+    <script src="app/examples/elements/examples/table-advanced-service.js"></script>
+    <script src="app/examples/elements/examples/table-1.controller.js"></script>
+    <script src="app/examples/elements/examples/grids-1.controller.js"></script>
+    <script src="app/examples/elements/examples/fab-speed-1.controller.js"></script>
+    <script src="app/examples/elements/examples/dialog-1.controller.js"></script>
+    <script src="app/examples/elements/examples/chips.controller.js"></script>
+    <script src="app/examples/dashboards/dashboards.module.js"></script>
+    <script src="app/examples/dashboards/widgets/widget-weather.directive.js"></script>
+    <script src="app/examples/dashboards/widgets/widget-twitter.directive.js"></script>
+    <script src="app/examples/dashboards/widgets/widget-todo.directive.js"></script>
+    <script src="app/examples/dashboards/widgets/widget-server.directive.js"></script>
+    <script src="app/examples/dashboards/widgets/widget-load-data.directive.js"></script>
+    <script src="app/examples/dashboards/widgets/widget-google-geochart.js"></script>
+    <script src="app/examples/dashboards/widgets/widget-contacts.directive.js"></script>
+    <script src="app/examples/dashboards/widgets/widget-chat.directive.js"></script>
+    <script src="app/examples/dashboards/widgets/widget-chartjs-ticker.directive.js"></script>
+    <script src="app/examples/dashboards/widgets/widget-chartjs-pie.directive.js"></script>
+    <script src="app/examples/dashboards/widgets/widget-chartjs-line.directive.js"></script>
+    <script src="app/examples/dashboards/widgets/widget-calendar.directive.js"></script>
+    <script src="app/examples/dashboards/social/dashboard-social.controller.js"></script>
+    <script src="app/examples/dashboards/server/dashboard-server.controller.js"></script>
+    <script src="app/examples/dashboards/sales/sales.service.js"></script>
+    <script src="app/examples/dashboards/sales/order-dialog.controller.js"></script>
+    <script src="app/examples/dashboards/sales/fab-button.controller.js"></script>
+    <script src="app/examples/dashboards/sales/date-change-dialog.controller.js"></script>
+    <script src="app/examples/dashboards/sales/dashboard-sales.controller.js"></script>
+    <script src="app/examples/dashboards/analytics/dashboard-analytics.controller.js"></script>
+    <script src="app/examples/charts/charts.module.js"></script>
+    <script src="app/examples/charts/examples/google-scatter.controller.js"></script>
+    <script src="app/examples/charts/examples/google-line.controller.js"></script>
+    <script src="app/examples/charts/examples/google-bar.controller.js"></script>
+    <script src="app/examples/charts/examples/chartjs-ticker.controller.js"></script>
+    <script src="app/examples/charts/examples/chartjs-pie.controller.js"></script>
+    <script src="app/examples/charts/examples/chartjs-line.controller.js"></script>
+    <script src="app/examples/charts/examples/chartjs-bar.controller.js"></script>
+    <script src="app/examples/authentication/authentication.module.js"></script>
+    <script src="app/examples/authentication/signup/signup.controller.js"></script>
+    <script src="app/examples/authentication/profile/profile.controller.js"></script>
+    <script src="app/examples/authentication/login/login.controller.js"></script>
+    <script src="app/examples/authentication/lock/lock.controller.js"></script>
+    <script src="app/examples/authentication/forgot/forgot.controller.js"></script>
+    <script src="app/admin/authentication/authentication.module.js"></script>
+    <script src="app/admin/authentication/register/verify.controller.js"></script>
+    <script src="app/admin/authentication/register/register.controller.js"></script>
+    <script src="app/admin/authentication/logoout/logout.controller.js"></script>
+    <script src="app/admin/authentication/login/login.controller.js"></script>
+    <script src="app/admin/authentication/forgot/reset.controller.js"></script>
+    <script src="app/admin/authentication/forgot/forgot.controller.js"></script>
+    <script src="app/triangular/themes/themes.module.js"></script>
+    <script src="app/triangular/themes/theming.provider.js"></script>
+    <script src="app/triangular/themes/skins.provider.js"></script>
+    <script src="app/triangular/triangular.module.js"></script>
+    <script src="app/triangular/router/router.run.js"></script>
+    <script src="app/triangular/router/router.provider.js"></script>
+    <script src="app/triangular/router/router.module.js"></script>
+    <script src="app/triangular/profiler/profiler.module.js"></script>
+    <script src="app/triangular/profiler/profiler.config.js"></script>
+    <script src="app/triangular/layouts/layouts.provider.js"></script>
+    <script src="app/triangular/directives/directives.module.js"></script>
+    <script src="app/triangular/directives/theme-background.directive.js"></script>
+    <script src="app/triangular/directives/same-password.directive.js"></script>
+    <script src="app/triangular/directives/palette-background.directive.js"></script>
+    <script src="app/triangular/directives/countupto.directive.js"></script>
+    <script src="app/examples/ui/webfont-loader-module.js"></script>
+    <script src="app/examples/ui/ui.module.js"></script>
+    <script src="app/examples/ui/weather-icons.controller.js"></script>
+    <script src="app/examples/ui/ui.run.js"></script>
+    <script src="app/examples/ui/ui.config.js"></script>
+    <script src="app/examples/ui/typography.controller.js"></script>
+    <script src="app/examples/ui/typography-switcher.service.js"></script>
+    <script src="app/examples/ui/skins.controller.js"></script>
+    <script src="app/examples/ui/material-icons.controller.js"></script>
+    <script src="app/examples/ui/fa-icons.controller.js"></script>
+    <script src="app/examples/ui/colors.controller.js"></script>
+    <script src="app/examples/ui/color-dialog.controller.js"></script>
+    <script src="app/examples/todo/todo.module.js"></script>
+    <script src="app/examples/todo/todo.controller.js"></script>
+    <script src="app/examples/todo/todo.config.js"></script>
+    <script src="app/examples/todo/fab-button.controller.js"></script>
+    <script src="app/examples/todo/dialog.controller.js"></script>
+    <script src="app/examples/menu/menu.config.js"></script>
+    <script src="app/examples/menu/level.controller.js"></script>
+    <script src="app/examples/menu/dynamicMenu.service.js"></script>
+    <script src="app/examples/maps/maps.config.js"></script>
+    <script src="app/examples/maps/map.controller.js"></script>
+    <script src="app/examples/layouts/layouts.module.js"></script>
+    <script src="app/examples/layouts/layouts.config.js"></script>
+    <script src="app/examples/layouts/composer.controller.js"></script>
+    <script src="app/examples/github/github.module.js"></script>
+    <script src="app/examples/github/github.controller.js"></script>
+    <script src="app/examples/github/github.config.js"></script>
+    <script src="app/examples/forms/forms.config.js"></script>
+    <script src="app/examples/forms/form-wizard.controller.js"></script>
+    <script src="app/examples/extras/extras.module.js"></script>
+    <script src="app/examples/extras/timeline.controller.js"></script>
+    <script src="app/examples/extras/replace-with.directive.js"></script>
+    <script src="app/examples/extras/gallery.controller.js"></script>
+    <script src="app/examples/extras/gallery-dialog.controller.js"></script>
+    <script src="app/examples/extras/extras.config.js"></script>
+    <script src="app/examples/extras/avatars.controller.js"></script>
+    <script src="app/examples/extras/animate-element.directive.js"></script>
+    <script src="app/examples/email/email.module.js"></script>
+    <script src="app/examples/email/toolbar.controller.js"></script>
+    <script src="app/examples/email/inbox.controller.js"></script>
+    <script src="app/examples/email/emailgroup.filter.js"></script>
+    <script src="app/examples/email/email.controller.js"></script>
+    <script src="app/examples/email/email.config.textangular.js"></script>
+    <script src="app/examples/email/email.config.js"></script>
+    <script src="app/examples/email/email-search.filter.js"></script>
+    <script src="app/examples/email/email-dialog.controller.js"></script>
+    <script src="app/examples/email/cut.filter.js"></script>
+    <script src="app/examples/elements/progress.controller.js"></script>
+    <script src="app/examples/elements/icons.controller.js"></script>
+    <script src="app/examples/elements/elements.config.js"></script>
+    <script src="app/examples/elements/buttons.controller.js"></script>
+    <script src="app/examples/dashboards/dashboards.config.js"></script>
+    <script src="app/examples/dashboards/dashboard-draggable-controller.js"></script>
+    <script src="app/examples/charts/charts.config.js"></script>
+    <script src="app/examples/calendar/calendar.module.js"></script>
+    <script src="app/examples/calendar/toolbar.controller.js"></script>
+    <script src="app/examples/calendar/padding.filter.js"></script>
+    <script src="app/examples/calendar/event-dialog.controller.js"></script>
+    <script src="app/examples/calendar/calendar.controller.js"></script>
+    <script src="app/examples/calendar/calendar.config.js"></script>
+    <script src="app/examples/calendar/calendar-fabs.controller.js"></script>
+    <script src="app/examples/authentication/authentication.config.js"></script>
+    <script src="app/admin/authentication/authentication.config.js"></script>
+    <script src="app/pelaporan-module/pelaporan.module.js"></script>
+    <script src="app/pelaporan-module/pelaporan.config.js"></script>
+    <script src="app/pelaporan-module/pelaporan-view.controller.js"></script>
+    <script src="app/pelaporan-module/pelaporan-list.controller.js"></script>
+    <script src="app/pelaporan-module/pelaporan-edit.controller.js"></script>
+    <script src="app/pelaporan-module/pelaporan-add.controller.js"></script>
+    <script src="app/juknis-module/juknis.module.js"></script>
+    <script src="app/juknis-module/juknis.config.js"></script>
+    <script src="app/juknis-module/juknis.controller.js"></script>
+    <script src="app/unit-module/unit.module.js"></script>
+    <script src="app/unit-module/unit.config.js"></script>
+    <script src="app/unit-module/unit-view.controller.js"></script>
+    <script src="app/unit-module/unit-structure.controller.js"></script>
+    <script src="app/unit-module/unit-list.controller.js"></script>
+    <script src="app/unit-module/unit-edit.controller.js"></script>
+    <script src="app/unit-module/unit-add.controller.js"></script>
+    <script src="app/triangular/triangular.run.js"></script>
+    <script src="app/triangular/settings.provider.js"></script>
+    <script src="app/triangular/config.route.js"></script>
+    <script src="app/template-form-module/template-form.module.js"></script>
+    <script src="app/template-form-module/template-form.config.js"></script>
+    <script src="app/template-form-module/template-form-view.controller.js"></script>
+    <script src="app/template-form-module/template-form-preview.controller.js"></script>
+    <script src="app/template-form-module/template-form-list.controller.js"></script>
+    <script src="app/template-form-module/template-form-edit.controller.js"></script>
+    <script src="app/template-form-module/template-form-add.controller.js"></script>
+    <script src="app/template-data-module/template-data.module.js"></script>
+    <script src="app/template-data-module/template-data.config.js"></script>
+    <script src="app/template-data-module/template-data-view.controller.js"></script>
+    <script src="app/template-data-module/template-data-list.controller.js"></script>
+    <script src="app/template-data-module/template-data-edit.controller.js"></script>
+    <script src="app/template-data-module/template-data-add.controller.js"></script>
+    <script src="app/tarif-izin-module/tarif-izin.module.js"></script>
+    <script src="app/tarif-izin-module/tarif-izin.config.js"></script>
+    <script src="app/tarif-izin-module/tarif-izin-list.controller.js"></script>
+    <script src="app/tarif-izin-module/tarif-item-view.controller.js"></script>
+    <script src="app/tarif-izin-module/tarif-item-list.controller.js"></script>
+    <script src="app/tarif-izin-module/tarif-item-edit.controller.js"></script>
+    <script src="app/tarif-izin-module/tarif-item-add.controller.js"></script>
+    <script src="app/status-pegawai-module/status-pegawai.module.js"></script>
+    <script src="app/status-pegawai-module/status-pegawai.config.js"></script>
+    <script src="app/simulasi-tarif-module/simulasi-tarif.module.js"></script>
+    <script src="app/simulasi-tarif-module/simulasi-tarif.config.js"></script>
+    <script src="app/simulasi-tarif-module/simulasi-tarif-add.controller.js"></script>
+    <script src="app/signature-module/signature.module.js"></script>
+    <script src="app/signature-module/signature.config.js"></script>
+    <script src="app/signature-module/signature-report.controller.js"></script>
+    <script src="app/shift-module/shift.module.js"></script>
+    <script src="app/shift-module/shift.config.js"></script>
+    <script src="app/service-eksternal-module/service-eksternal.module.js"></script>
+    <script src="app/service-eksternal-module/service-eksternal.config.js"></script>
+    <script src="app/service-eksternal-module/service-eksternal-view.controller.js"></script>
+    <script src="app/service-eksternal-module/service-eksternal-list.controller.js"></script>
+    <script src="app/service-eksternal-module/service-eksternal-edit.controller.js"></script>
+    <script src="app/service-eksternal-module/service-eksternal-add.controller.js"></script>
+    <script src="app/retribusi-module/retribusi.module.js"></script>
+    <script src="app/retribusi-module/retribusi.config.js"></script>
+    <script src="app/retribusi-module/retribusi-add.controller.js"></script>
+    <script src="app/rest-service-module/rest-service.module.js"></script>
+    <script src="app/rest-service-module/rest-service.config.js"></script>
+    <script src="app/rest-service-module/rest-service-view.controller.js"></script>
+    <script src="app/rest-service-module/rest-service-list.controller.js"></script>
+    <script src="app/rest-service-module/rest-service-edit.controller.js"></script>
+    <script src="app/rest-service-module/rest-service-add.controller.js"></script>
+    <script src="app/report-component-module/report-component.module.js"></script>
+    <script src="app/report-component-module/report-component.config.js"></script>
+    <script src="app/report-component-module/report-component-view.controller.js"></script>
+    <script src="app/report-component-module/report-component-list.controller.js"></script>
+    <script src="app/report-component-module/report-component-edit.controller.js"></script>
+    <script src="app/provinsi-module/provinsi.module.js"></script>
+    <script src="app/provinsi-module/provinsi.config.js"></script>
+    <script src="app/provinsi-module/provinsi-view.controller.js"></script>
+    <script src="app/provinsi-module/provinsi-list.controller.js"></script>
+    <script src="app/provinsi-module/provinsi-edit.controller.js"></script>
+    <script src="app/provinsi-module/provinsi-add.controller.js"></script>
+    <script src="app/proses-pengembangan-module/proses-pengembangan.module.js"></script>
+    <script src="app/proses-pengembangan-module/proses-pengembangan.config.js"></script>
+    <script src="app/proses-pengembangan-module/proses-pengembangan-view.controller.js"></script>
+    <script src="app/proses-pengembangan-module/proses-pengembangan-list.controller.js"></script>
+    <script src="app/proses-pengembangan-module/proses-pengembangan-edit.controller.js"></script>
+    <script src="app/proses-pengembangan-module/proses-pengembangan-add.controller.js"></script>
+    <script src="app/proses-pengajuan-module/proses-pengajuan.module.js"></script>
+    <script src="app/proses-pengajuan-module/proses-pengajuan.config.js"></script>
+    <script src="app/proses-pengajuan-module/proses-pengajuan-view.controller.js"></script>
+    <script src="app/proses-pengajuan-module/proses-pengajuan-list.controller.js"></script>
+    <script src="app/proses-nib-module/proses-nib.module.js"></script>
+    <script src="app/proses-nib-module/proses-nib.config.js"></script>
+    <script src="app/proses-nib-module/proses-nib-view.controller.js"></script>
+    <script src="app/proses-nib-module/proses-nib-list.controller.js"></script>
+    <script src="app/profile-pemohon-module/profile-pemohon.module.js"></script>
+    <script src="app/profile-pemohon-module/profile-pemohon.config.js"></script>
+    <script src="app/profile-pemohon-module/profile-pemohon-view.controller.js"></script>
+    <script src="app/profile-pemohon-module/profile-pemohon-perusahaan-detail.controller.js"></script>
+    <script src="app/profile-pemohon-module/profile-pemohon-permohonan-izin-detail.controller.js"></script>
+    <script src="app/profile-pemohon-module/profile-pemohon-permohonan-izin-add.controller.js"></script>
+    <script src="app/profile-pemohon-module/profile-pemohon-list.controller.js"></script>
+    <script src="app/profile-pemohon-module/profile-pemohon-izin-detail.controller.js"></script>
+    <script src="app/profile-pemohon-module/profile-pemohon-edit.controller.js"></script>
+    <script src="app/profile-pemohon-module/profile-pemohon-dokumen-detail.controller.js"></script>
+    <script src="app/profile-pemohon-module/profile-pemohon-dokumen-add.controller.js"></script>
+    <script src="app/profile-pegawai-time-module/profile-pegawai-time.module.js"></script>
+    <script src="app/profile-pegawai-time-module/profile-pegawai-time.config.js"></script>
+    <script src="app/profile-pegawai-time-module/profile-pegawai-time-list.controller.js"></script>
+    <script src="app/profile-pegawai-time-module/profile-pegawai-time-edit.controller.js"></script>
+    <script src="app/profile-pegawai-module/profile-pegawai.module.js"></script>
+    <script src="app/profile-pegawai-module/profile-pegawai.config.js"></script>
+    <script src="app/profile-pegawai-module/profile-pegawai-view.controller.js"></script>
+    <script src="app/profile-pegawai-module/profile-pegawai-list.controller.js"></script>
+    <script src="app/profile-pegawai-module/profile-pegawai-edit.controller.js"></script>
+    <script src="app/profile-pegawai-module/profile-pegawai-add.controller.js"></script>
+    <script src="app/profile-pegawai-gaji-module/profile-pegawai-gaji.module.js"></script>
+    <script src="app/profile-pegawai-gaji-module/profile-pegawai-gaji.config.js"></script>
+    <script src="app/profile-pegawai-gaji-module/profile-pegawai-gaji-list.controller.js"></script>
+    <script src="app/profile-pegawai-gaji-module/profile-pegawai-gaji-edit.controller.js"></script>
+    <script src="app/profile-module/profile.module.js"></script>
+    <script src="app/profile-module/profile.config.js"></script>
+    <script src="app/profile-module/profile-view.controller.js"></script>
+    <script src="app/profile-module/profile-list.controller.js"></script>
+    <script src="app/profile-module/profile-hire.controller.js"></script>
+    <script src="app/profile-module/profile-edit.controller.js"></script>
+    <script src="app/profile-module/profile-add.controller.js"></script>
+    <script src="app/posisi-module/posisi.module.js"></script>
+    <script src="app/posisi-module/posisi.config.js"></script>
+    <script src="app/perusahaan-module/perusahaan.module.js"></script>
+    <script src="app/perusahaan-module/perusahaan.config.js"></script>
+    <script src="app/perusahaan-module/perusahaan-newstructure.controller.js"></script>
+    <script src="app/perusahaan-module/perusahaan-edit.controller.js"></script>
+    <script src="app/perusahaan-module/perusahaan-add.controller.js"></script>
+    <script src="app/permohonan-izin-module/permohonan-izin.module.js"></script>
+    <script src="app/permohonan-izin-module/permohonan-izin.config.js"></script>
+    <script src="app/permohonan-izin-module/permohonan-izin-view.controller.js"></script>
+    <script src="app/permohonan-izin-module/permohonan-izin-list.controller.js"></script>
+    <script src="app/permohonan-izin-module/permohonan-izin-edit.controller.js"></script>
+    <script src="app/permohonan-izin-module/permohonan-izin-add.controller.js"></script>
+    <script src="app/peran-module/peran.module.js"></script>
+    <script src="app/peran-module/peran.config.js"></script>
+    <script src="app/peran-module/peran-view.controller.js"></script>
+    <script src="app/peran-module/peran-list.controller.js"></script>
+    <script src="app/peran-module/peran-edit.controller.js"></script>
+    <script src="app/peran-module/peran-add.controller.js"></script>
+    <script src="app/penomoran-module/penomoran.module.js"></script>
+    <script src="app/penomoran-module/penomoran.config.js"></script>
+    <script src="app/penomoran-module/penomoran-view.controller.js"></script>
+    <script src="app/penomoran-module/penomoran-list.controller.js"></script>
+    <script src="app/penomoran-module/penomoran-edit.controller.js"></script>
+    <script src="app/penomoran-module/penomoran-add.controller.js"></script>
+    <script src="app/pengumuman-module/pengumuman.module.js"></script>
+    <script src="app/pengumuman-module/pengumuman.config.js"></script>
+    <script src="app/pengumuman-module/pengumuman-view.controller.js"></script>
+    <script src="app/pengumuman-module/pengumuman-list.controller.js"></script>
+    <script src="app/pengumuman-module/pengumuman-edit.controller.js"></script>
+    <script src="app/pengumuman-module/pengumuman-add.controller.js"></script>
+    <script src="app/pengguna-rest-module/pengguna-rest.module.js"></script>
+    <script src="app/pengguna-rest-module/pengguna-rest.config.js"></script>
+    <script src="app/pengguna-rest-module/pengguna-rest-view.controller.js"></script>
+    <script src="app/pengguna-rest-module/pengguna-rest-list.controller.js"></script>
+    <script src="app/pengguna-rest-module/pengguna-rest-edit.controller.js"></script>
+    <script src="app/pengguna-rest-module/pengguna-rest-add.controller.js"></script>
+    <script src="app/pengguna-module/pengguna.module.js"></script>
+    <script src="app/pengguna-module/pengguna.config.js"></script>
+    <script src="app/pengguna-module/pengguna-view.controller.js"></script>
+    <script src="app/pengguna-module/pengguna-list.controller.js"></script>
+    <script src="app/pengguna-module/pengguna-edit.controller.js"></script>
+    <script src="app/pengguna-module/pengguna-add.controller.js"></script>
+    <script src="app/pengguna-gateway-module/pengguna-gateway.module.js"></script>
+    <script src="app/pengguna-gateway-module/pengguna-gateway.config.js"></script>
+    <script src="app/pengguna-gateway-module/pengguna-gateway-view.controller.js"></script>
+    <script src="app/pengguna-gateway-module/pengguna-gateway-list.controller.js"></script>
+    <script src="app/pengguna-gateway-module/pengguna-gateway-edit.controller.js"></script>
+    <script src="app/pengguna-gateway-module/pengguna-gateway-add.controller.js"></script>
+    <script src="app/penanganan-aduan-module/penanganan-aduan.module.js"></script>
+    <script src="app/penanganan-aduan-module/penanganan-aduan.config.js"></script>
+    <script src="app/penanganan-aduan-module/penanganan-aduan-view.controller.js"></script>
+    <script src="app/penanganan-aduan-module/penanganan-aduan-list.controller.js"></script>
+    <script src="app/penanganan-aduan-module/penanganan-aduan-edit.controller.js"></script>
+    <script src="app/penanganan-aduan-module/penanganan-aduan-add.controller.js"></script>
+    <script src="app/pemohon-register-module/pemohon-register.module.js"></script>
+    <script src="app/pemohon-register-module/pemohon-register.config.js"></script>
+    <script src="app/pemohon-register-module/pemohon-register-view.controller.js"></script>
+    <script src="app/pemohon-register-module/pemohon-register-list.controller.js"></script>
+    <script src="app/pemohon-module/pemohon.module.js"></script>
+    <script src="app/pemohon-module/pemohon.config.js"></script>
+    <script src="app/pemohon-module/pemohon-view.controller.js"></script>
+    <script src="app/pemohon-module/pemohon-perusahaan-detail.controller.js"></script>
+    <script src="app/pemohon-module/pemohon-permohonan-izin-detail.controller.js"></script>
+    <script src="app/pemohon-module/pemohon-permohonan-izin-add.controller.js"></script>
+    <script src="app/pemohon-module/pemohon-list.controller.js"></script>
+    <script src="app/pemohon-module/pemohon-izin-detail.controller.js"></script>
+    <script src="app/pemohon-module/pemohon-edit.controller.js"></script>
+    <script src="app/pemohon-module/pemohon-dokumen-detail.controller.js"></script>
+    <script src="app/pemohon-module/pemohon-dokumen-add.controller.js"></script>
+    <script src="app/pemegang-saham-module/pemegang-saham.module.js"></script>
+    <script src="app/pemegang-saham-module/pemegang-saham.config.js"></script>
+    <script src="app/pegawai-module/pegawai.module.js"></script>
+    <script src="app/pegawai-module/pegawai.config.js"></script>
+    <script src="app/pegawai-module/pegawai-view.controller.js"></script>
+    <script src="app/pegawai-module/pegawai-list.controller.js"></script>
+    <script src="app/pegawai-module/pegawai-edit.controller.js"></script>
+    <script src="app/pegawai-module/pegawai-add.controller.js"></script>
+    <script src="app/payroll-module/payroll-detail.controller.js"></script>
+    <script src="app/payroll-group-module/payroll-group.module.js"></script>
+    <script src="app/payroll-group-module/payroll-group.config.js"></script>
+    <script src="app/notifikasi-module/notifikasi.module.js"></script>
+    <script src="app/notifikasi-module/notifikasi.config.js"></script>
+    <script src="app/notifikasi-module/notifikasi-view.controller.js"></script>
+    <script src="app/notifikasi-module/notifikasi-list.controller.js"></script>
+    <script src="app/notifikasi-module/notifikasi-edit.controller.js"></script>
+    <script src="app/menu-module/menu.module.js"></script>
+    <script src="app/menu-module/menu.config.js"></script>
+    <script src="app/menu-module/menu-view.controller.js"></script>
+    <script src="app/menu-module/menu-list.controller.js"></script>
+    <script src="app/menu-module/menu-edit.controller.js"></script>
+    <script src="app/menu-module/menu-add.controller.js"></script>
+    <script src="app/maps-module/maps.module.js"></script>
+    <script src="app/maps-module/maps.config.js"></script>
+    <script src="app/maps-module/maps-view.controller.js"></script>
+    <script src="app/maps-module/maps-sicantik.controller.js"></script>
+    <script src="app/maps-module/maps-geojson.controller.js"></script>
+    <script src="app/maps-module/map.controller.js"></script>
+    <script src="app/lokasi-kerja-module/lokasi-kerja.module.js"></script>
+    <script src="app/lokasi-kerja-module/lokasi-kerja.config.js"></script>
+    <script src="app/kecamatan-module/kecamatan.module.js"></script>
+    <script src="app/kecamatan-module/kecamatan.config.js"></script>
+    <script src="app/kecamatan-module/kecamatan-view.controller.js"></script>
+    <script src="app/kecamatan-module/kecamatan-list.controller.js"></script>
+    <script src="app/kecamatan-module/kecamatan-edit.controller.js"></script>
+    <script src="app/kecamatan-module/kecamatan-add.controller.js"></script>
+    <script src="app/kamus-data-module/kamus-data.module.js"></script>
+    <script src="app/kamus-data-module/kamus-data.config.js"></script>
+    <script src="app/kamus-data-module/kamus-data-view.controller.js"></script>
+    <script src="app/kamus-data-module/kamus-data-records.controller.js"></script>
+    <script src="app/kamus-data-module/kamus-data-list.controller.js"></script>
+    <script src="app/kamus-data-module/kamus-data-edit.controller.js"></script>
+    <script src="app/kamus-data-module/kamus-data-add.controller.js"></script>
+    <script src="app/kalender-module/kalender.module.js"></script>
+    <script src="app/kalender-module/kalender.config.js"></script>
+    <script src="app/kalender-module/kalender-view.controller.js"></script>
+    <script src="app/kalender-module/kalender-list.controller.js"></script>
+    <script src="app/kalender-module/kalender-edit.controller.js"></script>
+    <script src="app/kabupaten-module/kabupaten.module.js"></script>
+    <script src="app/kabupaten-module/kabupaten.config.js"></script>
+    <script src="app/kabupaten-module/kabupaten-view.controller.js"></script>
+    <script src="app/kabupaten-module/kabupaten-list.controller.js"></script>
+    <script src="app/kabupaten-module/kabupaten-edit.controller.js"></script>
+    <script src="app/kabupaten-module/kabupaten-add.controller.js"></script>
+    <script src="app/jenis-usaha-module/jenis-usaha.module.js"></script>
+    <script src="app/jenis-usaha-module/jenis-usaha.config.js"></script>
+    <script src="app/jenis-usaha-module/jenis-usaha-view.controller.js"></script>
+    <script src="app/jenis-usaha-module/jenis-usaha-list.controller.js"></script>
+    <script src="app/jenis-usaha-module/jenis-usaha-edit.controller.js"></script>
+    <script src="app/jenis-usaha-module/jenis-usaha-add.controller.js"></script>
+    <script src="app/jenis-proses-module/jenis-proses.module.js"></script>
+    <script src="app/jenis-proses-module/jenis-proses.config.js"></script>
+    <script src="app/jenis-proses-module/jenis-proses-view.controller.js"></script>
+    <script src="app/jenis-proses-module/jenis-proses-list.controller.js"></script>
+    <script src="app/jenis-proses-module/jenis-proses-edit.controller.js"></script>
+    <script src="app/jenis-proses-module/jenis-proses-add.controller.js"></script>
+    <script src="app/jenis-izin-module/jenis-izin.module.js"></script>
+    <script src="app/jenis-izin-module/jenis-izin.config.js"></script>
+    <script src="app/jenis-izin-module/jenis-izin-view.controller.js"></script>
+    <script src="app/jenis-izin-module/jenis-izin-list.controller.js"></script>
+    <script src="app/jenis-izin-module/jenis-izin-edit.controller.js"></script>
+    <script src="app/jenis-izin-module/jenis-izin-add.controller.js"></script>
+    <script src="app/jenis-dokumen-module/jenis-dokumen.module.js"></script>
+    <script src="app/jenis-dokumen-module/jenis-dokumen.config.js"></script>
+    <script src="app/jenis-dokumen-module/jenis-dokumen-view.controller.js"></script>
+    <script src="app/jenis-dokumen-module/jenis-dokumen-list.controller.js"></script>
+    <script src="app/jenis-dokumen-module/jenis-dokumen-edit.controller.js"></script>
+    <script src="app/jenis-dokumen-module/jenis-dokumen-add.controller.js"></script>
+    <script src="app/jenis-absensi-module/jenis-absensi.module.js"></script>
+    <script src="app/jenis-absensi-module/jenis-absensi.config.js"></script>
+    <script src="app/jabatan-module/jabatan.module.js"></script>
+    <script src="app/jabatan-module/jabatan.config.js"></script>
+    <script src="app/izin-module/izin.module.js"></script>
+    <script src="app/inovasi-aduan-module/inovasi-aduan.module.js"></script>
+    <script src="app/inovasi-aduan-module/inovasi-aduan.config.js"></script>
+    <script src="app/inovasi-aduan-module/inovasi-aduan-view.controller.js"></script>
+    <script src="app/inovasi-aduan-module/inovasi-aduan-list.controller.js"></script>
+    <script src="app/inovasi-aduan-module/inovasi-aduan-edit.controller.js"></script>
+    <script src="app/inovasi-aduan-module/inovasi-aduan-add.controller.js"></script>
+    <script src="app/form-module/form.module.js"></script>
+    <script src="app/form-module/form.config.js"></script>
+    <script src="app/form-module/form-view.controller.js"></script>
+    <script src="app/form-module/form-report.controller.js"></script>
+    <script src="app/form-module/form-report-grid.controller.js"></script>
+    <script src="app/form-module/form-render.controller.js"></script>
+    <script src="app/form-module/form-list.controller.js"></script>
+    <script src="app/form-module/form-add.controller.js"></script>
+    <script src="app/form-assessment-module/form-assessment.module.js"></script>
+    <script src="app/form-assessment-module/form-assessment.config.js"></script>
+    <script src="app/form-assessment-module/form-assessment-list.controller.js"></script>
+    <script src="app/form-assessment-module/form-assessment-edit.controller.js"></script>
+    <script src="app/form-assessment-module/form-assessment-assess.controller.js"></script>
+    <script src="app/form-assessment-module/form-assessment-add.controller.js"></script>
+    <script src="app/fiscal-year-module/fiscal-year.module.js"></script>
+    <script src="app/fiscal-year-module/fiscal-year.config.js"></script>
+    <script src="app/fiscal-year-module/fiscal-year-view.controller.js"></script>
+    <script src="app/fiscal-year-module/fiscal-year-list.controller.js"></script>
+    <script src="app/fiscal-year-module/fiscal-year-edit.controller.js"></script>
+    <script src="app/fiscal-year-module/fiscal-year-add.controller.js"></script>
+    <script src="app/faq-setting-module/faq-setting.module.js"></script>
+    <script src="app/faq-setting-module/faq-setting.config.js"></script>
+    <script src="app/faq-setting-module/faq-setting-view.controller.js"></script>
+    <script src="app/faq-setting-module/faq-setting-list.controller.js"></script>
+    <script src="app/faq-setting-module/faq-setting-edit.controller.js"></script>
+    <script src="app/faq-setting-module/faq-setting-add.controller.js"></script>
+    <script src="app/faq-module/faq.module.js"></script>
+    <script src="app/faq-module/faq.config.js"></script>
+    <script src="app/faq-module/faq-view.controller.js"></script>
+    <script src="app/faq-module/faq-search.controller.js"></script>
+    <script src="app/faq-module/faq-search-all.controller.js"></script>
+    <script src="app/faq-module/faq-list.controller.js"></script>
+    <script src="app/faq-category-module/faq-category.module.js"></script>
+    <script src="app/faq-category-module/faq-category.config.js"></script>
+    <script src="app/faq-category-module/faq-category-view.controller.js"></script>
+    <script src="app/faq-category-module/faq-category-list.controller.js"></script>
+    <script src="app/faq-category-module/faq-category-edit.controller.js"></script>
+    <script src="app/faq-category-module/faq-category-add.controller.js"></script>
+    <script src="app/examples/examples.module.js"></script>
+    <script src="app/desa-module/desa.module.js"></script>
+    <script src="app/desa-module/desa.config.js"></script>
+    <script src="app/desa-module/desa-view.controller.js"></script>
+    <script src="app/desa-module/desa-list.controller.js"></script>
+    <script src="app/desa-module/desa-edit.controller.js"></script>
+    <script src="app/desa-module/desa-add.controller.js"></script>
+    <script src="app/dashboard-setting-module/dashboard-setting.module.js"></script>
+    <script src="app/dashboard-setting-module/dashboard-setting.config.js"></script>
+    <script src="app/dashboard-setting-module/dashboard-setting-view.controller.js"></script>
+    <script src="app/dashboard-setting-module/dashboard-setting-list.controller.js"></script>
+    <script src="app/dashboard-setting-module/dashboard-setting-edit.controller.js"></script>
+    <script src="app/dashboard-setting-module/dashboard-setting-add.controller.js"></script>
+    <script src="app/dashboard-module/dashboard.module.js"></script>
+    <script src="app/dashboard-module/dashboard.config.js"></script>
+    <script src="app/dashboard-module/dashboard-list.controller.js"></script>
+    <script src="app/dashboard-module/dashboard-analytics.controller.js"></script>
+    <script src="app/daftar-izin-module/daftar-izin.module.js"></script>
+    <script src="app/daftar-izin-module/daftar-izin.config.js"></script>
+    <script src="app/daftar-izin-module/daftar-izin-view.controller.js"></script>
+    <script src="app/daftar-izin-module/daftar-izin-list.controller.js"></script>
+    <script src="app/bidang-usaha-module/bidang-usaha.module.js"></script>
+    <script src="app/bidang-usaha-module/bidang-usaha.config.js"></script>
+    <script src="app/bidang-usaha-module/bidang-usaha-view.controller.js"></script>
+    <script src="app/bidang-usaha-module/bidang-usaha-list.controller.js"></script>
+    <script src="app/bidang-usaha-module/bidang-usaha-edit.controller.js"></script>
+    <script src="app/bidang-usaha-module/bidang-usaha-add.controller.js"></script>
+    <script src="app/alur-proses-module/alur-proses.module.js"></script>
+    <script src="app/alur-proses-module/alur-proses.config.js"></script>
+    <script src="app/alur-proses-module/alur-proses-view.controller.js"></script>
+    <script src="app/alur-proses-module/alur-proses-list.controller.js"></script>
+    <script src="app/alur-proses-module/alur-proses-edit.controller.js"></script>
+    <script src="app/alur-proses-module/alur-proses-add.controller.js"></script>
+    <script src="app/aksi-pegawai-module/aksi-pegawai.module.js"></script>
+    <script src="app/aksi-pegawai-module/aksi-pegawai.config.js"></script>
+    <script src="app/aduan-module/aduan.module.js"></script>
+    <script src="app/aduan-module/aduan.config.js"></script>
+    <script src="app/aduan-module/aduan-view.controller.js"></script>
+    <script src="app/aduan-module/aduan-list.controller.js"></script>
+    <script src="app/aduan-module/aduan-edit.controller.js"></script>
+    <script src="app/aduan-module/aduan-add.controller.js"></script>
+    <script src="app/admin-profile-module/admin-profile.module.js"></script>
+    <script src="app/admin-profile-module/admin-profile.controller.js"></script>
+    <script src="app/admin-profile-module/admin-profile.config.js"></script>
+    <script src="app/admin/admin.module.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/value.googlechart.js"></script>
+    <script src="app/config.triangular.themes.js"></script>
+    <script src="app/config.triangular.settings.js"></script>
+    <script src="app/config.triangular.layout.js"></script>
+    <script src="app/config.translate.js"></script>
+    <script src="app/config.route.js"></script>
+    <script src="app/config.date.js"></script>
+    <script src="app/config.chartjs.js"></script>
+    <script src="app/config.auth.js"></script>
+    <script src="app/config.app.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+    <!-- starts asset for rating stars -->
+    <link href="assets/css/jk-rating-stars.min.css" rel="stylesheet">
+    <script src="assets/js/jk-rating-stars.min.js"></script>
+    <!-- end rating stars -->
+
+    <link href="assets/css/smoothness/jquery-ui-1.10.1.custom.css" rel="stylesheet">
+    <link href="assets/css/smoothness/jquery.ui.combogrid.css" rel="stylesheet">
+    <script src="assets/js/jquery/jquery-1.9.1.min.js"></script>
+    <script src="assets/js/jquery/jquery-ui-1.10.1.custom.min.js"></script>
+    <script src="assets/js/plugin/jquery.i18n.properties-1.0.9.js"></script>
+    <script src="assets/js/plugin/jquery.ui.combogrid-1.6.3.js"></script>
+    <script async="" src="assets/js/FileSaver.min.js"></script>
+</body>
+
+</html>

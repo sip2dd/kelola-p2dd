@@ -1,0 +1,67 @@
+<div class="dashboard-container overlay-5 padded-content-page" layout="column">
+  <div layout="row" layout-xs="column" layout-align="space-around center" layout-margin>
+    <div flex="100" flex-xs="100">
+			<md-card>
+				<md-card-title>
+						<md-card-title-text>
+								<span class="md-headline" id="date" style="text-align: center;"></span>
+						</md-card-title-text>
+				</md-card-title>
+
+			</md-card>
+    </div>
+    
+	</div>
+
+	<div ng-repeat="item in vm.data.items" layout="row" layout-xs="column" layout-margin>
+    <div flex="100" flex-xs="100">
+			<md-card>
+				<md-card-title>
+						<md-card-title-text>
+								<span class="md-headline">{{item.judul}}</span>
+								<span class="md-subtitle" style="color: rgba(0,0,0,0.54)">{{item.dibuat_oleh}} - {{item.tgl_berlaku}}</span>
+						</md-card-title-text>
+				</md-card-title>
+
+				<md-card-content ng-bind-html="item.isi | trustHtml"></md-card-content>
+			</md-card>
+    </div>
+	</div>
+	
+</div>
+
+<script>
+  var n = new Date();
+  var y = n.getFullYear();
+  var m = n.getMonth() + 1;
+  var d = n.getDate();
+  var h = n.getHours();
+  var min = n.getMinutes();
+  var waktu = "Pagi";
+  if (h < 10) {
+    h = "0" + h;
+    waktu = "Pagi";
+  } else if (h < 15) {
+    waktu = "Siang";
+  } else if (h < 18) {
+    waktu = "Sore";
+  } else {
+    waktu = "Malam";
+  }
+  if (min < 10) {
+    min = "0" + min;
+  }
+  document.getElementById("date").innerHTML =
+    "Selamat " +
+    waktu +
+    " sekarang pukul " +
+    h +
+    ":" +
+    min +
+    " tanggal " +
+    d +
+    " bulan " +
+    m +
+    " tahun " +
+    y;
+</script>

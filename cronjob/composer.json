@@ -1,0 +1,9 @@
+{
+    "name": "kominfo/cronjob",
+    "type": "project",
+    "require": {
+        "symfony/mailer": "^5.3",
+        "guzzlehttp/guzzle": "^7.4",
+        "phpmailer/phpmailer": "^6.5"
+    }
+}

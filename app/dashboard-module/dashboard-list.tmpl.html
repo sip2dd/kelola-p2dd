@@ -1,0 +1,46 @@
+<div class="dashboard-container overlay-5 padded-content-page" layout="column">
+    <div layout="row" layout-xs="column" layout-margin>
+        <tri-widget ng-if="vm.showDashboardImage" class="widget-blog" flex="100" flex-xs="100" content-layout="column" content-layout-align="start center">
+	            <!--<marquee>-->
+			<strong><h2> Dashboard </h2></strong>
+			<!-- <h2 id="date">  </h2> -->
+  		    <!--</marquee>-->
+			<iframe align="left" style="width:50%; height:300px; border: 1px solid black;" src="https://public.tableau.com/views/WorldIndicators/GDPpercapita?:showVizHome=no&:embed=true">
+                        </iframe>
+			<iframe align="right" style="width:50%; height:300px; border: 1px solid black;" src="https://arcgis.com/apps/View/index.html?appid=6b6a075eca8d4899958fb273710a6806">
+                        </iframe>
+<!--    	                <iframe width="45%" height="1000px" src="https://public.tableau.com/views/WorldIndicators/GDPpercapita?:showVizHome=no&:embed=true">
+	                </iframe>
+			<iframe width="45%" height="1000px" src="https://arcgis.com/apps/View/index.html?appid=6b6a075eca8d4899958fb273710a6806">
+			</iframe>
+-->
+
+			<!--<img src="assets/images/backgrounds/material-backgrounds/cashless.jpg" alt="some bg">-->
+			<!--<div style="width:400px;height:200px;padding:20px;position: fixed;top: 50%;left: 50%;margin-top: -120px;margin-left: -220px;">
+				<img src="assets/images/backgrounds/material-backgrounds/SIP2DD.png" alt="some bg">
+			</div>-->
+			
+        </tri-widget>
+    </div>
+</div>
+
+<!-- <script>
+var n =  new Date();
+		var y = n.getFullYear();
+		var m = n.getMonth() + 1;
+		var d = n.getDate();
+		var h = n.getHours();
+		var min = n.getMinutes();
+		var waktu = "Pagi";
+		if (h < 10) {
+		waktu = "Pagi";
+	  } else if (h < 15) {
+		waktu = "Siang";
+	  } else if (h < 18) {
+		waktu = "Sore";
+	  }else {
+		waktu = "Malam";
+	  }
+	document.getElementById("date").innerHTML = "Selamat "+waktu+" sekarang pukul "+h+":"+min+" tanggal "+d+" bulan "+m+" tahun "+y;
+</script>
+ -->

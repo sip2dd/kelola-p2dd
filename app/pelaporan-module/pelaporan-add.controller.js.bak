@@ -1,0 +1,622 @@
+(function () {
+  'use strict';
+
+  angular
+      .module('pelaporan-module')
+      .controller('PelaporanAddController', PelaporanAddController);
+
+  /* @ngInject */
+  function PelaporanAddController($stateParams, $http, $state, $mdDialog, $log, EnvironmentConfig, AppFactory, PelaporanFactory, APP_CONFIG, MenuService) {
+    var vm = this;
+    var user = angular.fromJson(localStorage.getItem(APP_CONFIG.localStorageKey));
+    var id = $stateParams.id;
+
+    console.log(user.instansi_id);
+    vm.kode_daerah = user.kode_daerah ? user.kode_daerah : null;
+    vm.isProv = isProv;
+    vm.simpan = simpan;
+    vm.toggleSelection = toggleSelection;
+    
+    vm.data = {
+        id: id ? id : '',
+        instansi_id: user.instansi_id,
+        email: user.email,
+        kendaraan_bermotor: [],
+        bea_balik_nama_kendaraan: [],
+        bahan_bakar_kendaraan: [],
+        air_permukaan: [],
+        rokok: [],
+        hotel: [],
+        restoran: [],
+        hiburan: [],
+        reklame: [],
+        penerangan_jalan: [],
+        mineral_bukan_logam: [],
+        parkir: [],
+        air_tanah: [],
+        sarang_burung_walet: [],
+        pbb_desa_kota: [],
+        bea_hak_tanah_bangunan: [],
+        pelayanan_kesehatan: [],
+        pelayanan_kebersihan: [],
+        biaya_cetak_ktp_akta: [],
+        pelayanan_pemakaman: [],
+        parkir_jalan_umum: [],
+        pelayanan_pasar: [],
+        pengujian_kendaraan: [],
+        pemeriksaan_alat_pemadam: [],
+        biaya_cetak_peta: [],
+        penyedotan_kakus: [],
+        pengolahan_limbah_cair: [],
+        pelayanan_tera: [],
+        pelayanan_pendidikan: [],
+        pengendalian_menara_telekomunikasi: [],
+        pengendalian_lalu_lintas: [],
+        pemakaian_kekayaan_daerah: [],
+        pasar_grosir: [],
+        tempat_pelelangan: [],
+        terminal: [],
+        tempat_khusus_parkir: [],
+        tempat_penginapan: [],
+        rumah_potong_hewan: [],
+        pelayanan_pelabuhan: [],
+        tempat_rekreasi: [],
+        penyebrangan_diair: [],
+        penjualan_produksi_usaha: [],
+        izin_mendirikan_bangunan: [],
+        izin_tempat_penjualan_minuman: [],
+        izin_gangguan: [],
+        izin_trayek: [],
+        izin_usaha_perikanan: [],
+        perpanjangan_imta: [],
+        kerjasama_pemungutan_pajak: [],
+        kendala_pelaksanaan_eptd: [],
+        kendala_pengisian_eptd: [],
+    }
+    
+    vm.answers = ['A', 'B', 'C', 'D', 'E'];
+    vm.kerjasama = ['Perijinan', 'Dukcapil', 'OPD Penghasil', 'Kantor BPN', 'KPP Pratama'];
+    vm.kendala_pelaksanaan = ['Komitmen Pejabat Pemda', 'Kompetensi Aparatur', 'Minat Masyarakat', 'Infrastruktur IT', 'Sebaran Kantor Bank'];
+    vm.kendala_pengisian = ['Ketersediaan data', 'Koordinasi instansi', 'Isian terlalu panjang', 'Form internet menyulitkan pengisian'];
+    
+    getPeriodeAktif();
+    
+    if (id) {
+      PelaporanFactory.getPelaporan(id).then(function(res) {
+        angular.copy(res.data.data, vm.data)
+        delete vm.data.tgl_dibuat;
+        delete vm.data.tgl_diubah;
+      })
+    }
+
+    function isProv() {
+      if (vm.kode_daerah) {
+        if (vm.kode_daerah.length === 2) {
+          return true
+        }
+        return false
+      }
+    }
+
+    function simpan() {
+        vm.data.kendaraan_bermotor = vm.data.kendaraan_bermotor.toString()
+        vm.data.bea_balik_nama_kendaraan = vm.data.bea_balik_nama_kendaraan.toString()
+        vm.data.bahan_bakar_kendaraan = vm.data.bahan_bakar_kendaraan.toString()
+        vm.data.air_permukaan = vm.data.air_permukaan.toString()
+        vm.data.rokok = vm.data.rokok.toString()
+        vm.data.hotel = vm.data.hotel.toString()
+        vm.data.restoran = vm.data.restoran.toString()
+        vm.data.hiburan = vm.data.hiburan.toString()
+        vm.data.reklame = vm.data.reklame.toString()
+        vm.data.penerangan_jalan = vm.data.penerangan_jalan.toString()
+        vm.data.mineral_bukan_logam = vm.data.mineral_bukan_logam.toString()
+        vm.data.parkir = vm.data.parkir.toString()
+        vm.data.air_tanah = vm.data.air_tanah.toString()
+        vm.data.sarang_burung_walet = vm.data.sarang_burung_walet.toString()
+        vm.data.pbb_desa_kota = vm.data.pbb_desa_kota.toString()
+        vm.data.bea_hak_tanah_bangunan = vm.data.bea_hak_tanah_bangunan.toString()
+        vm.data.pelayanan_kesehatan = vm.data.pelayanan_kesehatan.toString()
+        vm.data.pelayanan_kebersihan = vm.data.pelayanan_kebersihan.toString()
+        vm.data.biaya_cetak_ktp_akta = vm.data.biaya_cetak_ktp_akta.toString()
+        vm.data.pelayanan_pemakaman = vm.data.pelayanan_pemakaman.toString()
+        vm.data.parkir_jalan_umum = vm.data.parkir_jalan_umum.toString()
+        vm.data.pelayanan_pasar = vm.data.pelayanan_pasar.toString()
+        vm.data.pengujian_kendaraan = vm.data.pengujian_kendaraan.toString()
+        vm.data.pemeriksaan_alat_pemadam = vm.data.pemeriksaan_alat_pemadam.toString()
+        vm.data.biaya_cetak_peta = vm.data.biaya_cetak_peta.toString()
+        vm.data.penyedotan_kakus = vm.data.penyedotan_kakus.toString()
+        vm.data.pengolahan_limbah_cair = vm.data.pengolahan_limbah_cair.toString()
+        vm.data.pelayanan_tera = vm.data.pelayanan_tera.toString()
+        vm.data.pelayanan_pendidikan = vm.data.pelayanan_pendidikan.toString()
+        vm.data.pengendalian_menara_telekomunikasi = vm.data.pengendalian_menara_telekomunikasi.toString()
+        vm.data.pengendalian_lalu_lintas = vm.data.pengendalian_lalu_lintas.toString()
+        vm.data.pemakaian_kekayaan_daerah = vm.data.pemakaian_kekayaan_daerah.toString()
+        vm.data.pasar_grosir = vm.data.pasar_grosir.toString()
+        vm.data.tempat_pelelangan = vm.data.tempat_pelelangan.toString()
+        vm.data.terminal = vm.data.terminal.toString()
+        vm.data.tempat_khusus_parkir = vm.data.tempat_khusus_parkir.toString()
+        vm.data.tempat_penginapan = vm.data.tempat_penginapan.toString()
+        vm.data.rumah_potong_hewan = vm.data.rumah_potong_hewan.toString()
+        vm.data.pelayanan_pelabuhan = vm.data.pelayanan_pelabuhan.toString()
+        vm.data.tempat_rekreasi = vm.data.tempat_rekreasi.toString()
+        vm.data.penyebrangan_diair = vm.data.penyebrangan_diair.toString()
+        vm.data.penjualan_produksi_usaha = vm.data.penjualan_produksi_usaha.toString()
+        vm.data.izin_mendirikan_bangunan = vm.data.izin_mendirikan_bangunan.toString()
+        vm.data.izin_tempat_penjualan_minuman = vm.data.izin_tempat_penjualan_minuman.toString()
+        vm.data.izin_gangguan = vm.data.izin_gangguan.toString()
+        vm.data.izin_trayek = vm.data.izin_trayek.toString()
+        vm.data.izin_usaha_perikanan = vm.data.izin_usaha_perikanan.toString()
+        vm.data.perpanjangan_imta = vm.data.perpanjangan_imta.toString()
+        vm.data.kerjasama_pemungutan_pajak = vm.data.kerjasama_pemungutan_pajak.toString()
+        vm.data.kendala_pelaksanaan_eptd = vm.data.kendala_pelaksanaan_eptd.toString()
+        vm.data.kendala_pengisian_eptd = vm.data.kendala_pengisian_eptd.toString()
+        var reqData = vm.data;
+        // console.log(vm.data);
+        // return;
+
+            var req = {
+                method: 'POST',
+                url: EnvironmentConfig.api + 'c_pelaporan',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                },
+                data: reqData
+            };
+
+            $http(req)
+                .success(function (res) {
+                    var dialog = {
+                        title: 'Sukses',
+                        content: res.message,
+                        ok: 'Ok'
+                    };
+
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .title(dialog.title)
+                        .textContent(dialog.content)
+                        .ok(dialog.ok)
+                    ).then(function () {
+                        window.history.back()
+                    });
+                })
+                .error(function (err) {
+                    AppFactory.showToast(err.message, 'error', err.errors);
+                });
+    }
+
+    function getPeriodeAktif() {
+      var getDataReq = {
+        method: 'GET',
+        url: EnvironmentConfig.api + 'TemplateData/keluaran/1620.json',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+      };
+      $http(getDataReq)
+        .success(function(res) {
+          var { items } = res.data
+          vm.data.periode_id = items ? items[0].id : null
+        })
+        .error(function(err) {
+            $log.error(err);
+        });
+    }
+
+    function toggleSelection(field, answer) {
+        switch (field) {
+            case 'kendaraan':
+                var idx = vm.data.kendaraan_bermotor.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.kendaraan_bermotor.splice(idx, 1);
+                } else {
+                  vm.data.kendaraan_bermotor.push(answer);
+                }
+                break;
+            case 'bea_balik_nama_kendaraan':
+                var idx = vm.data.bea_balik_nama_kendaraan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.bea_balik_nama_kendaraan.splice(idx, 1);
+                } else {
+                  vm.data.bea_balik_nama_kendaraan.push(answer);
+                }
+                break;
+            case 'bahan_bakar_kendaraan':
+                var idx = vm.data.bahan_bakar_kendaraan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.bahan_bakar_kendaraan.splice(idx, 1);
+                } else {
+                  vm.data.bahan_bakar_kendaraan.push(answer);
+                }
+                break;
+            case 'air_permukaan':
+                var idx = vm.data.air_permukaan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.air_permukaan.splice(idx, 1);
+                } else {
+                  vm.data.air_permukaan.push(answer);
+                }
+                break;
+            case 'rokok':
+                var idx = vm.data.rokok.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.rokok.splice(idx, 1);
+                } else {
+                  vm.data.rokok.push(answer);
+                }
+                break;
+            case 'hotel':
+                var idx = vm.data.hotel.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.hotel.splice(idx, 1);
+                } else {
+                  vm.data.hotel.push(answer);
+                }
+                break;
+            case 'restoran':
+                var idx = vm.data.restoran.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.restoran.splice(idx, 1);
+                } else {
+                  vm.data.restoran.push(answer);
+                }
+                break;
+            case 'hiburan':
+                var idx = vm.data.hiburan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.hiburan.splice(idx, 1);
+                } else {
+                  vm.data.hiburan.push(answer);
+                }
+                break;
+            case 'reklame':
+                var idx = vm.data.reklame.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.reklame.splice(idx, 1);
+                } else {
+                  vm.data.reklame.push(answer);
+                }
+                break;
+            case 'penerangan_jalan':
+                var idx = vm.data.penerangan_jalan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.penerangan_jalan.splice(idx, 1);
+                } else {
+                  vm.data.penerangan_jalan.push(answer);
+                }
+                break;
+            case 'mineral_bukan_logam':
+                var idx = vm.data.mineral_bukan_logam.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.mineral_bukan_logam.splice(idx, 1);
+                } else {
+                  vm.data.mineral_bukan_logam.push(answer);
+                }
+                break;
+            case 'parkir':
+                var idx = vm.data.parkir.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.parkir.splice(idx, 1);
+                } else {
+                  vm.data.parkir.push(answer);
+                }
+                break;
+            case 'air_tanah':
+                var idx = vm.data.air_tanah.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.air_tanah.splice(idx, 1);
+                } else {
+                  vm.data.air_tanah.push(answer);
+                }
+                break;
+            case 'sarang_burung_walet':
+                var idx = vm.data.sarang_burung_walet.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.sarang_burung_walet.splice(idx, 1);
+                } else {
+                  vm.data.sarang_burung_walet.push(answer);
+                }
+                break;
+            case 'pbb_desa_kota':
+                var idx = vm.data.pbb_desa_kota.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pbb_desa_kota.splice(idx, 1);
+                } else {
+                  vm.data.pbb_desa_kota.push(answer);
+                }
+                break;
+            case 'bea_hak_tanah_bangunan':
+                var idx = vm.data.bea_hak_tanah_bangunan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.bea_hak_tanah_bangunan.splice(idx, 1);
+                } else {
+                  vm.data.bea_hak_tanah_bangunan.push(answer);
+                }
+                break;
+            case 'pelayanan_kesehatan':
+                var idx = vm.data.pelayanan_kesehatan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pelayanan_kesehatan.splice(idx, 1);
+                } else {
+                  vm.data.pelayanan_kesehatan.push(answer);
+                }
+                break;
+            case 'pelayanan_kebersihan':
+                var idx = vm.data.pelayanan_kebersihan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pelayanan_kebersihan.splice(idx, 1);
+                } else {
+                  vm.data.pelayanan_kebersihan.push(answer);
+                }
+                break;
+            case 'biaya_cetak_ktp_akta':
+                var idx = vm.data.biaya_cetak_ktp_akta.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.biaya_cetak_ktp_akta.splice(idx, 1);
+                } else {
+                  vm.data.biaya_cetak_ktp_akta.push(answer);
+                }
+                break;
+            case 'pelayanan_pemakaman':
+                var idx = vm.data.pelayanan_pemakaman.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pelayanan_pemakaman.splice(idx, 1);
+                } else {
+                  vm.data.pelayanan_pemakaman.push(answer);
+                }
+                break;
+            case 'parkir_jalan_umum':
+                var idx = vm.data.parkir_jalan_umum.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.parkir_jalan_umum.splice(idx, 1);
+                } else {
+                  vm.data.parkir_jalan_umum.push(answer);
+                }
+                break;
+            case 'pelayanan_pasar':
+                var idx = vm.data.pelayanan_pasar.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pelayanan_pasar.splice(idx, 1);
+                } else {
+                  vm.data.pelayanan_pasar.push(answer);
+                }
+                break;
+            case 'pengujian_kendaraan':
+                var idx = vm.data.pengujian_kendaraan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pengujian_kendaraan.splice(idx, 1);
+                } else {
+                  vm.data.pengujian_kendaraan.push(answer);
+                }
+                break;
+            case 'pemeriksaan_alat_pemadam':
+                var idx = vm.data.pemeriksaan_alat_pemadam.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pemeriksaan_alat_pemadam.splice(idx, 1);
+                } else {
+                  vm.data.pemeriksaan_alat_pemadam.push(answer);
+                }
+                break;
+            case 'biaya_cetak_peta':
+                var idx = vm.data.biaya_cetak_peta.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.biaya_cetak_peta.splice(idx, 1);
+                } else {
+                  vm.data.biaya_cetak_peta.push(answer);
+                }
+                break;
+            case 'penyedotan_kakus':
+                var idx = vm.data.penyedotan_kakus.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.penyedotan_kakus.splice(idx, 1);
+                } else {
+                  vm.data.penyedotan_kakus.push(answer);
+                }
+                break;
+            case 'pengolahan_limbah_cair':
+                var idx = vm.data.pengolahan_limbah_cair.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pengolahan_limbah_cair.splice(idx, 1);
+                } else {
+                  vm.data.pengolahan_limbah_cair.push(answer);
+                }
+                break;
+            case 'pelayanan_tera':
+                var idx = vm.data.pelayanan_tera.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pelayanan_tera.splice(idx, 1);
+                } else {
+                  vm.data.pelayanan_tera.push(answer);
+                }
+                break;
+            case 'pelayanan_pendidikan':
+                var idx = vm.data.pelayanan_pendidikan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pelayanan_pendidikan.splice(idx, 1);
+                } else {
+                  vm.data.pelayanan_pendidikan.push(answer);
+                }
+                break;
+            case 'pengendalian_menara_telekomunikasi':
+                var idx = vm.data.pengendalian_menara_telekomunikasi.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pengendalian_menara_telekomunikasi.splice(idx, 1);
+                } else {
+                  vm.data.pengendalian_menara_telekomunikasi.push(answer);
+                }
+                break;
+            case 'pengendalian_lalu_lintas':
+                var idx = vm.data.pengendalian_lalu_lintas.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pengendalian_lalu_lintas.splice(idx, 1);
+                } else {
+                  vm.data.pengendalian_lalu_lintas.push(answer);
+                }
+                break;
+            case 'pemakaian_kekayaan_daerah':
+                var idx = vm.data.pemakaian_kekayaan_daerah.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pemakaian_kekayaan_daerah.splice(idx, 1);
+                } else {
+                  vm.data.pemakaian_kekayaan_daerah.push(answer);
+                }
+                break;
+            case 'pasar_grosir':
+                var idx = vm.data.pasar_grosir.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pasar_grosir.splice(idx, 1);
+                } else {
+                  vm.data.pasar_grosir.push(answer);
+                }
+                break;
+            case 'tempat_pelelangan':
+                var idx = vm.data.tempat_pelelangan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.tempat_pelelangan.splice(idx, 1);
+                } else {
+                  vm.data.tempat_pelelangan.push(answer);
+                }
+                break;
+            case 'terminal':
+                var idx = vm.data.terminal.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.terminal.splice(idx, 1);
+                } else {
+                  vm.data.terminal.push(answer);
+                }
+                break;
+            case 'tempat_khusus_parkir':
+                var idx = vm.data.tempat_khusus_parkir.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.tempat_khusus_parkir.splice(idx, 1);
+                } else {
+                  vm.data.tempat_khusus_parkir.push(answer);
+                }
+                break;
+            case 'tempat_penginapan':
+                var idx = vm.data.tempat_penginapan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.tempat_penginapan.splice(idx, 1);
+                } else {
+                  vm.data.tempat_penginapan.push(answer);
+                }
+                break;
+            case 'rumah_potong_hewan':
+                var idx = vm.data.rumah_potong_hewan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.rumah_potong_hewan.splice(idx, 1);
+                } else {
+                  vm.data.rumah_potong_hewan.push(answer);
+                }
+                break;
+            case 'pelayanan_pelabuhan':
+                var idx = vm.data.pelayanan_pelabuhan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.pelayanan_pelabuhan.splice(idx, 1);
+                } else {
+                  vm.data.pelayanan_pelabuhan.push(answer);
+                }
+                break;
+            case 'tempat_rekreasi':
+                var idx = vm.data.tempat_rekreasi.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.tempat_rekreasi.splice(idx, 1);
+                } else {
+                  vm.data.tempat_rekreasi.push(answer);
+                }
+                break;
+            case 'penyebrangan_diair':
+                var idx = vm.data.penyebrangan_diair.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.penyebrangan_diair.splice(idx, 1);
+                } else {
+                  vm.data.penyebrangan_diair.push(answer);
+                }
+                break;
+            case 'penjualan_produksi_usaha':
+                var idx = vm.data.penjualan_produksi_usaha.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.penjualan_produksi_usaha.splice(idx, 1);
+                } else {
+                  vm.data.penjualan_produksi_usaha.push(answer);
+                }
+                break;
+            case 'izin_mendirikan_bangunan':
+                var idx = vm.data.izin_mendirikan_bangunan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.izin_mendirikan_bangunan.splice(idx, 1);
+                } else {
+                  vm.data.izin_mendirikan_bangunan.push(answer);
+                }
+                break;
+            case 'izin_tempat_penjualan_minuman':
+                var idx = vm.data.izin_tempat_penjualan_minuman.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.izin_tempat_penjualan_minuman.splice(idx, 1);
+                } else {
+                  vm.data.izin_tempat_penjualan_minuman.push(answer);
+                }
+                break;
+            case 'izin_gangguan':
+                var idx = vm.data.izin_gangguan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.izin_gangguan.splice(idx, 1);
+                } else {
+                  vm.data.izin_gangguan.push(answer);
+                }
+                break;
+            case 'izin_trayek':
+                var idx = vm.data.izin_trayek.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.izin_trayek.splice(idx, 1);
+                } else {
+                  vm.data.izin_trayek.push(answer);
+                }
+                break;
+            case 'izin_usaha_perikanan':
+                var idx = vm.data.izin_usaha_perikanan.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.izin_usaha_perikanan.splice(idx, 1);
+                } else {
+                  vm.data.izin_usaha_perikanan.push(answer);
+                }
+                break;
+            case 'perpanjangan_imta':
+                var idx = vm.data.perpanjangan_imta.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.perpanjangan_imta.splice(idx, 1);
+                } else {
+                  vm.data.perpanjangan_imta.push(answer);
+                }
+                break;
+            case 'kerjasama_pemungutan_pajak':
+                var idx = vm.data.kerjasama_pemungutan_pajak.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.kerjasama_pemungutan_pajak.splice(idx, 1);
+                } else {
+                  vm.data.kerjasama_pemungutan_pajak.push(answer);
+                }
+                break;
+            case 'kendala_pelaksanaan_eptd':
+                var idx = vm.data.kendala_pelaksanaan_eptd.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.kendala_pelaksanaan_eptd.splice(idx, 1);
+                } else {
+                  vm.data.kendala_pelaksanaan_eptd.push(answer);
+                }
+                break;
+            case 'kendala_pengisian_eptd':
+                var idx = vm.data.kendala_pengisian_eptd.indexOf(answer);
+                if (idx > -1) {
+                  vm.data.kendala_pengisian_eptd.splice(idx, 1);
+                } else {
+                  vm.data.kendala_pengisian_eptd.push(answer);
+                }
+                break;
+            default:
+                console.log("no option");
+                break;
+        }
+      };
+  }
+})();

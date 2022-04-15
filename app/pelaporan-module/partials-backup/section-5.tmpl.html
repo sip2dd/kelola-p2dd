@@ -1,0 +1,154 @@
+<style>
+  table#pilihan > tbody > tr > td {
+      padding-right: 50px;
+  }
+</style>
+<form name="lingkunganstrategisForm" tri-wizard-form novalidate>
+    <p>1. Sebutkan sistem informasi keuangan daerah berbasis elektronik (Pendapatan/Penerimaan Daerah) yang saat ini digunakan<span style="color: red;">*</span></p>
+    <md-input-container ng-repeat="item in vm.sistem" class="md-block" style="margin: 0px;" flex>
+        <md-checkbox style="margin-bottom: 0px;" class="md-primary" name="vm.data.sistem_informasi_pendapatan_daerah[]" value="{{item}}" ng-checked="vm.data.sistem_informasi_pendapatan_daerah.indexOf(item) > -1" ng-click="vm.toggleSelection('sistem_informasi_pendapatan_daerah', item)" aria-label="{{item}}">
+            {{item}}
+        </md-checkbox>
+      </md-input-container>
+    
+    <md-input-container style="margin: 0px;" ng-if="vm.data.sistem_informasi_pendapatan_daerah.includes('Other')">
+        <input type="text" ng-model="vm.data.sistem_informasi_pendapatan_daerah_other"/>
+    </md-input-container>
+
+    <p>2. Sebutkan sistem informasi keuangan daerah berbasis elektronik (Belanja Daerah) yang saat ini digunakan<span style="color: red;">*</span></p>
+    <md-input-container ng-repeat="item in vm.sistem" class="md-block" style="margin: 0px;" flex>
+        <md-checkbox style="margin-bottom: 0px;" class="md-primary" name="vm.data.sistem_informasi_belanja_daerah[]" value="{{item}}" ng-checked="vm.data.sistem_informasi_belanja_daerah.indexOf(item) > -1" ng-click="vm.toggleSelection('sistem_informasi_belanja_daerah', item)" aria-label="{{item}}">
+            {{item}}
+        </md-checkbox>
+      </md-input-container>
+    
+    <md-input-container style="margin: 0px;" ng-if="vm.data.sistem_informasi_belanja_daerah.includes('Other')">
+        <input type="text" ng-model="vm.data.sistem_informasi_belanja_daerah_other"/>
+    </md-input-container>
+
+    <p>3. (Khusus Pemda Yang Belum Menggunakan SIPD) Apakah sistem informasi keuangan daerah yang digunakan tersebut telah terintegrasi dengan SIPD?</p>
+      <md-radio-group class="md-primary" ng-model="vm.data.integrasi_sipd">
+          <md-radio-button value="ya">Ya</md-radio-button>
+          <md-radio-button value="tidak">Tidak</md-radio-button>
+      </md-radio-group>
+    <p>4. Apakah Pemda Saudara sudah mengimplementasikan sistem Surat Perintah Pencairan Dana (SP2D) secara daring / online?<span style="color: red;">*</span></p>
+      <md-radio-group class="md-primary" ng-model="vm.data.sp2d_online">
+          <md-radio-button value="sudah">Sudah</md-radio-button>
+          <md-radio-button value="belum">Belum</md-radio-button>
+      </md-radio-group>
+    <p>5. Apakah Pemda Saudara sudah menggunakan aplikasi Cash Management System (CMS) yang disediakan oleh Bank RKUD?<span style="color: red;">*</span></p>
+      <md-radio-group class="md-primary" ng-model="vm.data.integrasi_cms">
+          <md-radio-button value="sudah">Sudah</md-radio-button>
+          <md-radio-button value="belum">Belum</md-radio-button>
+      </md-radio-group>
+    <p>6. Apakah Pemda Saudara sudah mengintegrasikan aplikasi Cash Management System (CMS) dengan sistem keuangan Pemda?<span style="color: red;">*</span></p>
+      <md-radio-group class="md-primary" ng-model="vm.data.integrasi_cms_dengan_pemda">
+          <md-radio-button value="sudah">Sudah</md-radio-button>
+          <md-radio-button value="belum">Belum</md-radio-button>
+      </md-radio-group>
+    <p>7. Apakah Pemda Saudara sudah memiliki regulasi terkait elektronifikasi transaksi pemerintah daerah?<span style="color: red;">*</span></p>
+      <md-radio-group class="md-primary" ng-model="vm.data.regulasi_elektronifikasi">
+          <md-radio-button value="sudah">Sudah</md-radio-button>
+          <md-radio-button value="belum">Belum</md-radio-button>
+      </md-radio-group>
+      <md-input-container class="md-block">
+        <label>8. Jika Ya, sebutkan regulasi yang sudah dimiliki</label>
+        <input type="text" ng-model="vm.data.regulasi_yang_dimiliki" />
+      </md-input-container>
+    <p>9. Apakah Pemda Saudara sudah melakukan sosialisasi mengenai pembayaran pajak dan/atau retribusi secara nontunai kepada masyarakat?<span style="color: red;">*</span></p>
+      <md-radio-group class="md-primary" ng-model="vm.data.sosialisasi_pembayaran_nontunai">
+          <md-radio-button value="sudah">Sudah</md-radio-button>
+          <md-radio-button value="belum">Belum</md-radio-button>
+      </md-radio-group>
+    <p>10. Apakah Pemda Saudara telah memiliki Rencana Aksi implementasi ETPD di daerah Saudara?<span style="color: red;">*</span></p>
+      <md-radio-group class="md-primary" ng-model="vm.data.rencana_pengembangan_etpd">
+          <md-radio-button value="sudah">Sudah</md-radio-button>
+          <md-radio-button value="belum">Belum</md-radio-button>
+      </md-radio-group>
+    <p>11. Apakah di wilayah Saudara terdapat daerah/kecamatan yang belum terlayani oleh jaringan internet (blankspot)?<span style="color: red;">*</span></p>
+      <md-radio-group class="md-primary" ng-model="vm.data.blankspot">
+          <md-radio-button value="ya">Ya</md-radio-button>
+          <md-radio-button value="tidak">Tidak</md-radio-button>
+      </md-radio-group>
+      <md-input-container class="md-block">
+        <label>12. Jika Ya, sebutkan wilayah blankspot dimaksud</label>
+        <input type="text" ng-model="vm.data.wilayah_blankspot" />
+      </md-input-container>
+    <p>13. Berikan ceklis persentase Kecamatan / Desa di wilayah saudara yang telah tercakup jaringan komunikasi.<span style="color: red;">*</span></p>
+    <p class="radio-label">Jaringan 2G</p>
+      <md-radio-group class="md-primary" ng-model="vm.data.jaringan_2g">
+        <table id="pilihan">
+          <tr>
+              <td>
+                  <md-radio-button value="1-25">1% s.d 25%</md-radio-button>
+              </td>
+              <td>
+                  <md-radio-button value="26-50">26% s.d 50%</md-radio-button>
+              </td>
+              <td>
+                <md-radio-button value="51-75">51% s.d 75%</md-radio-button>
+              </td>
+              <td>
+                <md-radio-button value="76-100">76% s.d 100%</md-radio-button>
+              </td>
+              <td>
+                <md-radio-button value="belum">Belum Ada</md-radio-button>
+              </td>
+          </tr>
+      </table>
+      </md-radio-group>
+    <p class="radio-label">Jaringan 3G</p>
+      <md-radio-group class="md-primary" ng-model="vm.data.jaringan_3g">
+        <table id="pilihan">
+          <tr>
+              <td>
+                  <md-radio-button value="1-25">1% s.d 25%</md-radio-button>
+              </td>
+              <td>
+                  <md-radio-button value="26-50">26% s.d 50%</md-radio-button>
+              </td>
+              <td>
+                <md-radio-button value="51-75">51% s.d 75%</md-radio-button>
+              </td>
+              <td>
+                <md-radio-button value="76-100">76% s.d 100%</md-radio-button>
+              </td>
+              <td>
+                <md-radio-button value="belum">Belum Ada</md-radio-button>
+              </td>
+          </tr>
+      </table>
+      </md-radio-group>
+    <p class="radio-label">Jaringan 4G</p>
+      <md-radio-group class="md-primary" ng-model="vm.data.jaringan_4g">
+        <table id="pilihan">
+          <tr>
+              <td>
+                  <md-radio-button value="1-25">1% s.d 25%</md-radio-button>
+              </td>
+              <td>
+                  <md-radio-button value="26-50">26% s.d 50%</md-radio-button>
+              </td>
+              <td>
+                <md-radio-button value="51-75">51% s.d 75%</md-radio-button>
+              </td>
+              <td>
+                <md-radio-button value="76-100">76% s.d 100%</md-radio-button>
+              </td>
+              <td>
+                <md-radio-button value="belum">Belum Ada</md-radio-button>
+              </td>
+          </tr>
+      </table>
+      </md-radio-group>
+    <p>14. Berikan ceklis pada instansi yang telah menjalin kerja sama dalam memudahkan pemungutan pajak dan retribusi<span style="color: red;">*</span></p>
+    <md-input-container ng-repeat="item in vm.kerjasama" class="md-block" style="margin: 0px;" flex>
+      <md-checkbox style="margin-bottom: 0px;" class="md-primary" name="vm.data.kerjasama_pemungutan_pajak[]" value="{{item}}" ng-checked="vm.data.kerjasama_pemungutan_pajak.indexOf(item) > -1" ng-click="vm.toggleSelection('kerjasama_pemungutan_pajak', item)" aria-label="{{item}}">
+          {{item}}
+      </md-checkbox>
+    </md-input-container>
+
+    <md-input-container style="margin: 0px;" ng-if="vm.data.kerjasama_pemungutan_pajak.includes('Other')">
+      <input type="text" ng-model="vm.data.kerjasama_pemungutan_pajak_other"/>
+    </md-input-container>
+</form>

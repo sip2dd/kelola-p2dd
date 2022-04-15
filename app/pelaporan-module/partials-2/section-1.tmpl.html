@@ -1,0 +1,191 @@
+<style>
+    table#pilihan > tbody > tr > td {
+        padding-right: 50px;
+    }
+</style>
+<form name="pemdaForm" novalidate>
+    <div>
+      <p>1. Berikut adalah transaksi belanja langsung yang telah dapat dilakukan secara elektronifikasi</p>
+      <p class="radio-label">Belanja Pegawai</p>
+      <md-radio-group disabled class="md-primary" ng-model="vm.data.belanja_pegawai_langsung">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak">Tidak</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak_dianggarkan">Tidak Dianggarkan</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+      <p class="radio-label">Belanja Barang Dan Jasa</p>
+      <md-radio-group disabled class="md-primary" ng-model="vm.data.belanja_barang_dan_jasa_langsung">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak">Tidak</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak_dianggarkan">Tidak Dianggarkan</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+      <p class="radio-label">Belanja Modal</p>
+      <md-radio-group disabled class="md-primary" ng-model="vm.data.belanja_modal_langsung">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak">Tidak</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak_dianggarkan">Tidak Dianggarkan</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+
+      <br>
+
+      <p>2. Berikut adalah transaksi belanja tidak langsung yang telah dapat dilakukan secara elektronifikasi</p>
+      <p class="radio-label">Belanja Pegawai</p>
+      <md-radio-group disabled class="md-primary" ng-model="vm.data.belanja_pegawai_tidak_langsung">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak">Tidak</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak_dianggarkan">Tidak Dianggarkan</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+      <p class="radio-label">Belanja Bunga</p>
+      <md-radio-group disabled class="md-primary" ng-model="vm.data.belanja_bunga_tidak_langsung">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak">Tidak</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak_dianggarkan">Tidak Dianggarkan</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+      <p class="radio-label">Belanja Subsidi</p>
+      <md-radio-group disabled class="md-primary" ng-model="vm.data.belanja_subsidi_tidak_langsung">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak">Tidak</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak_dianggarkan">Tidak Dianggarkan</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+      <p class="radio-label">Belanja Hibah</p>
+      <md-radio-group disabled class="md-primary" ng-model="vm.data.belanja_hibah_tidak_langsung">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak">Tidak</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak_dianggarkan">Tidak Dianggarkan</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+      <p class="radio-label">Belanja Bantuan Sosial</p>
+      <md-radio-group disabled class="md-primary" ng-model="vm.data.belanja_bantuan_sosial_tidak_langsung">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak">Tidak</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak_dianggarkan">Tidak Dianggarkan</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+      <p class="radio-label">Belanja Bagi Hasil</p>
+      <md-radio-group disabled class="md-primary" ng-model="vm.data.belanja_bagi_hasil_tidak_langsung">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak">Tidak</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak_dianggarkan">Tidak Dianggarkan</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+      <p class="radio-label">Belanja Bantuan Keuangan</p>
+      <md-radio-group disabled class="md-primary" ng-model="vm.data.belanja_bantuan_keuangan_tidak_langsung">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak">Tidak</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak_dianggarkan">Tidak Dianggarkan</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+      <p class="radio-label">Belanja Tidak Terduga</p>
+      <md-radio-group disabled class="md-primary" ng-model="vm.data.belanja_tidak_terduga_tidak_langsung">
+          <table id="pilihan">
+              <tr>
+                  <td>
+                      <md-radio-button value="ya">Ya</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak">Tidak</md-radio-button>
+                  </td>
+                  <td>
+                      <md-radio-button value="tidak_dianggarkan">Tidak Dianggarkan</md-radio-button>
+                  </td>
+              </tr>
+          </table>
+      </md-radio-group>
+
+    </div>
+  </form>

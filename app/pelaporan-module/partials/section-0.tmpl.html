@@ -1,0 +1,158 @@
+<form name="pemdaForm" tri-wizard-form novalidate>
+    <div>
+      <md-input-container class="md-block">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Email" ng-model="vm.data.email" ng-required="true"/>
+        <div ng-messages="pemdaForm.email.$error">
+          <div ng-messages-include="app/include/validation-messages.html"></div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <p>1. Tingkat Pemerintah Daerah<span style="color: red;">*</span></p>
+        <md-radio-group class="md-primary" ng-model="vm.data.tingkat_pemerintah_daerah" ng-required="true">
+          <md-radio-button ng-dblclick = "vm.data.tingkat_pemerintah_daerah = null" value="provinsi">Provinsi</md-radio-button>
+          <md-radio-button ng-dblclick = "vm.data.tingkat_pemerintah_daerah = null" value="kota">Kota</md-radio-button>
+          <md-radio-button ng-dblclick = "vm.data.tingkat_pemerintah_daerah = null" value="kabupaten">Kabupaten</md-radio-button>
+        </md-radio-group>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <p>2. Nama Provinsi/Kota/Kabupaten<span style="color: red;">*</span></p>
+        <md-select name="nama_daerah" placeholder="Pilih" ng-model="vm.data.nama_daerah" ng-required="true" style="margin-bottom: 0px;">
+            <md-option ng-repeat="item in vm.master_provinsi" value="{{item.nama_daerah}}">{{item.nama_daerah}}</md-option>
+        </md-select>
+        <div ng-messages="pemdaForm.nama_daerah.$error">
+          <div ng-messages-include="app/include/validation-messages.html"></div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <p>3. Kantor Perwakilan Bank Indonesia Dalam Negeri<span style="color: red;">*</span></p>
+        <md-select name="kpwdn" placeholder="Pilih" ng-model="vm.data.kpwdn" ng-required="true" style="margin-bottom: 0px;">
+          <md-option ng-repeat="item in vm.master_kpwdn" value="{{item.kpwdn}}">{{item.kpwdn}}</md-option>
+        </md-select>
+        <div ng-messages="pemdaForm.kpwdn.$error">
+          <div ng-messages-include="app/include/validation-messages.html"></div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>4. Nama Petugas Pengisi</label>
+        <input name="nama_petugas" type="text" ng-model="vm.data.nama_petugas" ng-required="true" />
+        <div ng-messages="pemdaForm.nama_petugas.$error">
+          <div ng-messages-include="app/include/validation-messages.html"></div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>5. Nomor Induk Pegawai</label>
+        <input name="nip" type="text" ng-model="vm.data.nip" ng-required="true" numeric-only />
+        <div ng-messages="pemdaForm.nip.$error">
+          <div ng-messages-include="app/include/validation-messages.html"></div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>6. Nomor kontak responden yang dapat dihubungi</label>
+        <input name="nomor_kontak" type="text" ng-model="vm.data.nomor_kontak" ng-required="true" numeric-only />
+        <div ng-messages="pemdaForm.nomor_kontak.$error">
+          <div ng-messages-include="app/include/validation-messages.html"></div>
+        </div>
+      </md-input-container>
+
+      <p>Pada bagian ini mohon perkenaan Saudara untuk dapat mengisi jawaban yang sesuai terkait nominal transaksi pendapatan dan belanja berdasarkan kanal pembayaran di Pemerintah Daerah Saudara</p>
+      <md-input-container class="md-block">
+        <label>1. Total Target Pendapatan Asli Daerah (Rp)</label>
+        <input name="target_pendapatan" type="number" ng-model="vm.data.total_target_pendapatan_asli_daerah" ng-required="true" />
+        <div ng-messages="pemdaForm.target_pendapatan.$error">
+          <div ng-messages-include="app/include/validation-messages.html"></div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>2. Total Realisasi Pendapatan Asli Daerah (Rp)</label>
+        <input name="realisasi_pendapatan" type="number" ng-model="vm.data.total_realisasi_pendapatan_asli_daerah" ng-required="true" />
+        <div ng-messages="pemdaForm.realisasi_pendapatan.$error">
+          <div ng-messages-include="app/include/validation-messages.html"></div>
+        </div>
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>3. Total Target Pajak Daerah (Rp)</label>
+        <input type="number" ng-model="vm.data.total_target_pajak_daerah" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>4. Total Realisasi Pajak Daerah (Rp)</label>
+        <input type="number" ng-model="vm.data.total_realisasi_pajak_daerah" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>5. Total Target Retribusi Daerah (Rp)</label>
+        <input type="number" ng-model="vm.data.total_target_retribusi_daerah" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>6. Total Realisasi Retribusi Daerah (Rp)</label>
+        <input type="number" ng-model="vm.data.total_realisasi_retribusi_daerah" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>7. Total Pagu Belanja Daerah (Rp)</label>
+        <input name="pagu_belanja" type="number" ng-model="vm.data.total_pagu_belanja_daerah" ng-required="true" />
+        <div ng-messages="pemdaForm.pagu_belanja.$error">
+          <div ng-messages-include="app/include/validation-messages.html"></div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>8. Total Realisasi Belanja Daerah (Rp)</label>
+        <input name="realisasi_belanja" type="number" ng-model="vm.data.total_realisasi_belanja_daerah" ng-required="true" />
+        <div ng-messages="pemdaForm.realisasi_belanja.$error">
+          <div ng-messages-include="app/include/validation-messages.html"></div>
+        </div>
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>9. Total Pagu Belanja Operasi (Rp) </label>
+        <input type="number" ng-model="vm.data.total_pagu_belanja_operasi" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>10. Total Realisasi Belanja Operasi (Rp)</label>
+        <input type="number" ng-model="vm.data.total_realisasi_belanja_operasi" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>11. Total Pagu Belanja Modal (Rp)</label>
+        <input type="number" ng-model="vm.data.total_pagu_belanja_modal" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>12. Total Realisasi Belanja Modal (Rp)</label>
+        <input type="number" ng-model="vm.data.total_realisasi_belanja_modal" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>13. Total Pagu Belanja Tidak Terduga (Rp)</label>
+        <input type="number" ng-model="vm.data.total_pagu_belanja_tidak_terduga" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>14. Total Realisasi Belanja Tidak Terduga (Rp)</label>
+        <input type="number" ng-model="vm.data.total_realisasi_belanja_tidak_terduga" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>15. Total Pagu Belanja Transfer (Rp)</label>
+        <input type="number" ng-model="vm.data.total_pagu_belanja_transfer" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>16. Total Realisasi Belanja Transfer (Rp)</label>
+        <input type="number" ng-model="vm.data.total_realisasi_belanja_transfer" />
+      </md-input-container>
+
+    </div>
+  </form>

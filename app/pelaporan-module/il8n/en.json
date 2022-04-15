@@ -1,0 +1,15 @@
+{
+    "MENU": {
+        "PELAPORAN": {
+            "PELAPORAN-MODULE": "Pelaporan"
+        }
+    },
+    "PELAPORAN": {
+        "TITLE": "Pelaporan",
+        "LIST": "Daftar",
+        "ADD": "Tambah Pelaporan",
+        "EDIT": "Ubah Pelaporan",
+        "VIEW": "Lihat Pelaporan",
+        "SEARCH": "Cari"
+    }
+}

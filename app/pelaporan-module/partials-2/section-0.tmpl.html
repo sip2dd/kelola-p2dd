@@ -1,0 +1,122 @@
+<form name="pemdaForm" novalidate>
+    <div>
+      <md-input-container class="md-block">
+        <label>Email</label>
+        <input disabled type="text" ng-model="vm.data.email" />
+      </md-input-container>
+
+      <p>1. Tingkat Pemerintah Daerah</p>
+      <md-radio-group disabled class="md-primary" ng-model="vm.data.tingkat_pemerintah_daerah">
+        <md-radio-button value="provinsi">Provinsi</md-radio-button>
+        <md-radio-button value="kota">Kota</md-radio-button>
+        <md-radio-button value="kabupaten">Kabupaten</md-radio-button>
+      </md-radio-group>
+
+      <label>2. Nama Provinsi/Kota/Kabupaten</label>
+      <md-select disabled placeholder="Pilih" ng-model="vm.data.nama_daerah">
+          <md-option ng-repeat="item in vm.master_provinsi" value="{{item.nama_daerah}}">{{item.nama_daerah}}</md-option>
+      </md-select>
+
+      <label>3. Kantor Perwakilan Bank Indonesia Dalam Negeri</label>
+      <md-select disabled placeholder="Pilih" ng-model="vm.data.kpwdn">
+        <md-option ng-repeat="item in vm.master_kpwdn" value="{{item.kpwdn}}">{{item.kpwdn}}</md-option>
+      </md-select>
+
+      <md-input-container class="md-block">
+        <label>4. Nama Petugas Pengisi</label>
+        <input disabled type="text" ng-model="vm.data.nama_petugas" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>5. Nomor Induk Pegawai</label>
+        <input disabled type="text" ng-model="vm.data.nip" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>6. Nomor kontak responden yang dapat dihubungi</label>
+        <input disabled type="text" ng-model="vm.data.nomor_kontak" />
+      </md-input-container>
+
+      <p>Pada bagian ini mohon perkenaan Saudara untuk dapat mengisi jawaban yang sesuai terkait nominal transaksi pendapatan dan belanja berdasarkan kanal pembayaran di Pemerintah Daerah Saudara</p>
+      <md-input-container class="md-block">
+        <label>1. Total Target Pendapatan Asli Daerah (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_target_pendapatan_asli_daerah" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>2. Total Realisasi Pendapatan Asli Daerah (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_realisasi_pendapatan_asli_daerah" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>3. Total Target Pajak Daerah (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_target_pajak_daerah" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>4. Total Realisasi Pajak Daerah (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_realisasi_pajak_daerah" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>5. Total Target Retribusi Daerah (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_target_retribusi_daerah" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>6. Total Realisasi Retribusi Daerah (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_realisasi_retribusi_daerah" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>7. Total Pagu Belanja Daerah (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_pagu_belanja_daerah" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>8. Total Realisasi Belanja Daerah (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_realisasi_belanja_daerah" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>9. Total Pagu Belanja Operasi (Rp) </label>
+        <input disabled type="text" ng-model="vm.data.total_pagu_belanja_operasi" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>10. Total Realisasi Belanja Operasi (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_realisasi_belanja_operasi" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>11. Total Pagu Belanja Modal (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_pagu_belanja_modal" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>12. Total Realisasi Belanja Modal (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_realisasi_belanja_modal" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>13. Total Pagu Belanja Tidak Terduga (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_pagu_belanja_tidak_terduga" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>14. Total Realisasi Belanja Tidak Terduga (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_realisasi_belanja_tidak_terduga" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>15. Total Pagu Belanja Transfer (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_pagu_belanja_transfer" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>16. Total Realisasi Belanja Transfer (Rp)</label>
+        <input disabled type="text" ng-model="vm.data.total_realisasi_belanja_transfer" />
+      </md-input-container>
+
+    </div>
+  </form>

@@ -1,0 +1,91 @@
+<form name="transaksikeuangandaerahForm" tri-wizard-form novalidate>
+    <div>
+      <md-input-container class="md-block">
+        <label>1. Nama Bank RKUD</label>
+        <input name="nama_bank_rkud" type="text" ng-model="vm.data.nama_bank_rkud" ng-required="true" />
+        <div ng-messages="transaksikeuangandaerahForm.nama_bank_rkud.$error">
+          <div ng-messages-include="app/include/validation-messages.html"></div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>2. Total Pajak Daerah Dari Kanal QRIS (Rp)</label>
+        <input type="number" ng-model="vm.data.total_pajak_daerah_dari_qris" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>3. Total Retribusi Daerah Dari Kanal QRIS (Rp)</label>
+        <input type="number" ng-model="vm.data.total_retribusi_daerah_dari_qris" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>4. Total Pajak Daerah Dari Kanal Non Digital (Teller & Loket Bank) (Rp)</label>
+        <input type="number" ng-model="vm.data.total_pajak_daerah_dari_non_digital" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>5. Total Retribusi Daerah Dari Kanal Non Digital (Teller & Loket Bank) (Rp)</label>
+        <input type="number" ng-model="vm.data.total_retribusi_daerah_dari_non_digital" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>6. Total Pajak Daerah Dari Kanal ATM (Rp)</label>
+        <input type="number" ng-model="vm.data.total_pajak_daerah_dari_atm" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>7. Total Pajak Daerah Dari Kanal EDC (Rp)</label>
+        <input type="number" ng-model="vm.data.total_pajak_daerah_dari_edc" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>8. Total Pajak Daerah Dari Kanal Internet/Mobile/SMS Banking (Rp)</label>
+        <input type="number" ng-model="vm.data.total_pajak_daerah_dari_internet" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>9. Total Pajak Daerah Dari Kanal Agen Bank (Rp)</label>
+        <input type="number" ng-model="vm.data.total_pajak_daerah_dari_agen_bank" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>10. Total Pajak Daerah Dari Kanal UE Reader (Rp)</label>
+        <input type="number" ng-model="vm.data.total_pajak_daerah_dari_uereader" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>11. Total Pajak Daerah Dari Kanal E-Commerce (Rp)</label>
+        <input type="number" ng-model="vm.data.total_pajak_daerah_dari_ecommerce" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>12. Total Retribusi Daerah Dari Kanal Digital ATM (Rp)</label>
+        <input type="number" ng-model="vm.data.total_retribusi_daerah_dari_atm" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>13. Total Retribusi Daerah Dari Kanal EDC (Rp)</label>
+        <input type="number" ng-model="vm.data.total_retribusi_daerah_dari_edc" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>14. Total Retribusi Daerah Dari Kanal Internet/Mobile/SMS Banking (Rp)</label>
+        <input type="number" ng-model="vm.data.total_retribusi_daerah_dari_internet" />
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>15. Total Retribusi Daerah Dari Kanal Agen Bank (Rp)</label>
+        <input type="number" ng-model="vm.data.total_retribusi_daerah_dari_agen_bank" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>16. Total Retribusi Daerah Dari Kanal UE Reader (Rp)</label>
+        <input type="number" ng-model="vm.data.total_retribusi_daerah_dari_uereader" />
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>17. Total Retribusi Daerah Dari Kanal E-Commerce (Rp)</label>
+        <input type="number" ng-model="vm.data.total_retribusi_daerah_dari_ecommerce" />
+      </md-input-container>
+    </div>
+</form>

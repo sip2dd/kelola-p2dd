@@ -1,0 +1,150 @@
+<style>
+  md-content.md-cyan-theme {
+    background-color: white;
+  }
+  .radio-label {
+    margin-top: 32px;
+    font-weight: bold;
+  }
+  .label-check {
+    padding-right: 32px;
+  }
+</style>
+
+<md-content class="padded-content-page">
+  <h2 translate>PELAPORAN.ADD</h2>
+  <div flex class="md-whiteframe-z1 margin-bottom-100" tri-wizard>
+    <md-toolbar class="md-primary">
+      <div
+        class="md-toolbar-tools"
+        layout="row"
+        layout-align="space-between center"
+      >
+        <h2>Form Pelaporan</h2>
+        <!-- <h2>
+          {{triWizard.progress}}% <span>Complete</span>
+        </h2> -->
+      </div>
+      <md-progress-linear
+        class="md-accent padding-bottom-10"
+        md-mode="determinate"
+        ng-value="triWizard.progress"
+      ></md-progress-linear>
+    </md-toolbar>
+    <md-tabs
+      class="md-primary"
+      layout-fill
+      md-selected="triWizard.currentStep"
+      md-dynamic-height
+    >
+      <md-tab id="informasiumum">
+        <md-tab-label>
+          <span class="oxy-step-label">A</span>
+          <span>Informasi Umum</span>
+        </md-tab-label>
+        <md-tab-body>
+          <md-content class="md-padding" ng-include="'app/pelaporan-module/partials/section-0.tmpl.html'">
+          </md-content>
+        </md-tab-body>
+      </md-tab>
+
+      <md-tab id="transaksibelanjapemda">
+        <md-tab-label>
+          <span class="oxy-step-label">B</span>
+          <span>Transaksi Belanja Pemda</span>
+        </md-tab-label>
+        <md-tab-body>
+          <md-content class="md-padding" ng-include="'app/pelaporan-module/partials/section-1.tmpl.html'">
+          </md-content>
+        </md-tab-body>
+      </md-tab>
+
+      <md-tab id="transaksipendapatanpemda">
+        <md-tab-label>
+          <span class="oxy-step-label">C</span>
+          <span>Transaksi Pendapatan Pemda</span>
+        </md-tab-label>
+        <md-tab-body>
+          <md-content class="md-padding" ng-include="'app/pelaporan-module/partials/section-2.tmpl.html'">
+          </md-content>
+        </md-tab-body>
+      </md-tab>
+
+      <md-tab id="kanalpembayaran">
+        <md-tab-label>
+          <span class="oxy-step-label">D</span>
+          <span>Kanal Pembayaran</span>
+        </md-tab-label>
+        <md-tab-body>
+          <md-content class="md-padding"  ng-include="'app/pelaporan-module/partials/section-3.tmpl.html'">
+          </md-content>
+        </md-tab-body>
+      </md-tab>
+
+      <md-tab id="transaksikeuangandaerah">
+        <md-tab-label>
+          <span class="oxy-step-label">E</span>
+          <span>Realisasi Transaksi Keuangan Daerah</span>
+        </md-tab-label>
+        <md-tab-body>
+          <md-content class="md-padding"  ng-include="'app/pelaporan-module/partials/section-4.tmpl.html'">
+          </md-content>
+        </md-tab-body>
+      </md-tab>
+      
+      <md-tab id="lingkunganstrategis">
+        <md-tab-label>
+          <span class="oxy-step-label">F</span>
+          <span>Lingkungan Strategis</span>
+        </md-tab-label>
+        <md-tab-body>
+          <md-content class="md-padding"  ng-include="'app/pelaporan-module/partials/section-5.tmpl.html'">
+          </md-content>
+        </md-tab-body>
+      </md-tab>
+
+      <md-tab id="kendalarencanamasukan">
+        <md-tab-label>
+          <span class="oxy-step-label">G</span>
+          <span>Kendala dan Rencana Kerja Perluasan ETPD</span>
+        </md-tab-label>
+        <md-tab-body>
+          <md-content class="md-padding"  ng-include="'app/pelaporan-module/partials/section-6.tmpl.html'">
+          </md-content>
+        </md-tab-body>
+      </md-tab>
+
+    </md-tabs>
+    <div
+      class="wizard-navbar"
+      layout-fill
+      layout-padding
+      layout="row"
+      layout-align="space-between center"
+    >
+      <div>
+        <md-button
+          class="md-accent md-raised"
+          ng-click="triWizard.prevStep()"
+          ng-disabled="triWizard.prevStepDisabled()"
+        >Sebelumnya</md-button>
+        <md-button
+          class="md-accent md-raised"
+          ng-click="triWizard.nextStep()"
+          ng-disabled="triWizard.currentStep == 6"
+        >Selanjutnya</md-button>
+      </div>
+      <div>
+        <md-button
+          class="md-primary md-raised"
+          ng-click="vm.simpan()"
+          ng-disabled="vm.disableSave()"
+        >Simpan</md-button>
+        <md-button
+          class="md-raised"
+          onclick="window.history.back()"
+        >Kembali</md-button>
+      </div>
+    </div>
+  </div>
+</md-content>
